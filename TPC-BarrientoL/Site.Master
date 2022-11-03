@@ -72,10 +72,22 @@
           <a class="nav-link active" aria-current="page" href="Ventas">Ventas</a>
         </li>
           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Clientes">Clientes</a>
+        </li>
+          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="Compras">Compras</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="Stock">Stock</a>
+          <a class="nav-link active" aria-current="page" href="Productos">Productos</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Proveedores">Proveedores</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Marcas">Marcas</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="Categorias">Categorias</a>
         </li>
       </ul>
     </div>

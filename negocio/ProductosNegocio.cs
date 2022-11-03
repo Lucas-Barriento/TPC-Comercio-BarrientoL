@@ -28,11 +28,11 @@ namespace negocio
 
                     Aux.Marca = new Marcas();
                     Aux.Marca.Id = (int)Datos.LectorSql["IdMar"];
-                    Aux.Marca.Descripcion = (string)Datos.LectorSql["Marca"];
+                    Aux.Marca.Nombre = (string)Datos.LectorSql["Marca"];
                     
                     Aux.Categoria = new Categorias();
                     Aux.Categoria.Id = (int)Datos.LectorSql["IdCat"];
-                    Aux.Categoria.Descripcion = (string)Datos.LectorSql["Categoria"];
+                    Aux.Categoria.Nombre = (string)Datos.LectorSql["Categoria"];
 
                     Aux.Stock = (int)Datos.LectorSql["Stock"];
                     Aux.StockMinimo = (int)Datos.LectorSql["StockMinimo"];
