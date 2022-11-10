@@ -16,5 +16,10 @@ namespace TPC_BarrientoL
             dgvCompras.DataSource = negocio.Listar();
             dgvCompras.DataBind();
         }
+
+        protected void dgvCompras_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
     }
 }

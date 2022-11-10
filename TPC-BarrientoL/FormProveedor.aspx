@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Modificar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormMarca.aspx.cs" Inherits="TPC_BarrientoL.FormMarca" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormProveedor.aspx.cs" Inherits="TPC_BarrientoL.FormProveedor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="row">
+        <div class="row">
         <div class="col-6">
             <div class="mb-3">
                 <asp:Label ID="lblId" Text="Id" runat="server" for="txtBoxId"/>

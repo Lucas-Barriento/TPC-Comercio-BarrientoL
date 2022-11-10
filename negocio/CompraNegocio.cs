@@ -27,7 +27,7 @@ namespace negocio
                     Compra.PrecioTotal = (decimal)Datos.LectorSql["PrecioCompra"];
 
                     Compra.Proveedor = new Proveedor();
-                    Compra.Proveedor.ID = (int)Datos.LectorSql["IdProv"];
+                    Compra.Proveedor.Id = (int)Datos.LectorSql["IdProv"];
                     Compra.Proveedor.Nombre = (string)Datos.LectorSql["Proveedor"];
 
                     Lista.Add(Compra);

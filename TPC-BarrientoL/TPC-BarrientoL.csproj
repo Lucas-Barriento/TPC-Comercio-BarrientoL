@@ -108,6 +108,12 @@
     <Content Include="Categoria.aspx" />
     <Content Include="Cliente.aspx" />
     <Content Include="Compra.aspx" />
+    <Content Include="FormCategoria.aspx" />
+    <Content Include="FormCliente.aspx" />
+    <Content Include="FormCompra.aspx" />
+    <Content Include="FormProducto.aspx" />
+    <Content Include="FormProveedor.aspx" />
+    <Content Include="FormVenta.aspx" />
     <Content Include="Marca.aspx" />
     <Content Include="FormMarca.aspx" />
     <Content Include="Producto.aspx" />
@@ -274,6 +280,48 @@
       <DependentUpon>Compra.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="FormCategoria.aspx.cs">
+      <DependentUpon>FormCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormCategoria.aspx.designer.cs">
+      <DependentUpon>FormCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormCliente.aspx.cs">
+      <DependentUpon>FormCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormCliente.aspx.designer.cs">
+      <DependentUpon>FormCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompra.aspx.cs">
+      <DependentUpon>FormCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormCompra.aspx.designer.cs">
+      <DependentUpon>FormCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormProducto.aspx.cs">
+      <DependentUpon>FormProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormProducto.aspx.designer.cs">
+      <DependentUpon>FormProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormProveedor.aspx.cs">
+      <DependentUpon>FormProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormProveedor.aspx.designer.cs">
+      <DependentUpon>FormProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormVenta.aspx.cs">
+      <DependentUpon>FormVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormVenta.aspx.designer.cs">
+      <DependentUpon>FormVenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Marca.aspx.cs">
       <DependentUpon>Marca.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

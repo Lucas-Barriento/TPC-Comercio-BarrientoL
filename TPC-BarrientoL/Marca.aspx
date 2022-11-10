@@ -2,14 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <button><a href="FormMarca.aspx">Agregar</a></button>
-    <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false">
+    <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormMarca.aspx" />
+    <br />
+    <br />
+    <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField HeaderText="Marca" DataField="Nombre" />
-<%--            <asp:CommandField ShowSelectButton="true" SelectText="Modificar" />
-            <asp:CommandField  ShowSelectButton="true" SelectText="Eliminar"  />--%>
+            <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
             <asp:buttonfield ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar"  />
-            <asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" /> 
+            <asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />
+            
         </Columns>
     </asp:GridView>
 </asp:Content>

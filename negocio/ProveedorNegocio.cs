@@ -11,20 +11,19 @@ namespace negocio
     {
         public List<Proveedor> Listar()
         {
-
             List<Proveedor> Lista = new List<Proveedor>();
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select Id,Nombre from PROVEEDOR");
+                Datos.SetConsulta("select Id,Nombre,Estado from PROVEEDOR");
                 Datos.ejecutarLectura();
 
                 while (Datos.LectorSql.Read())
                 {
-                    //se crea un aux, se le asigna los datos del lector y se agrega a la lista
                     Proveedor Proveedor = new Proveedor();
-                    Proveedor.ID = (int)Datos.LectorSql["Id"];
+                    Proveedor.Id = (int)Datos.LectorSql["Id"];
                     Proveedor.Nombre = (string)Datos.LectorSql["Nombre"];
+                    Proveedor.Estado = (bool)Datos.LectorSql["Estado"];
 
                     Lista.Add(Proveedor);
                 }
@@ -37,6 +36,54 @@ namespace negocio
             finally
             {
                 Datos.cerrarConexion();
+            }
+        }
+        public void Agregar(Proveedor Nuevo)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetConsulta("insert into PROVEEDOR (Nombre,Estado)values('" + Nuevo.Nombre + "','" + Nuevo.Estado + "')");
+                Datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
+
+        }
+        public void Modificar(Proveedor proveedor)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetConsulta("update CATEGORIA set Nombre=@Nombre, Estado=@Estado where Id=@id");
+                Datos.SetParametros("@Nombre", proveedor.Nombre);
+                Datos.SetParametros("@Estado", proveedor.Estado);
+                Datos.SetParametros("@id", proveedor.Id);
+                Datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void Eliminar(int id)//eliminar con numero de id
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetConsulta("delete from PROVEEDOR where id=@id");
+                Datos.SetParametros("@id", id);
+                Datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

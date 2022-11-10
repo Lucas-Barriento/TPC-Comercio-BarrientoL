@@ -16,16 +16,9 @@ namespace TPC_BarrientoL
             dgvMarcas.DataSource = negocio.Listar();
             dgvMarcas.DataBind();
         }
-
-        protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("FormMarca.aspx");
-            
         }
 
         protected void dgvMarcas_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -33,14 +26,15 @@ namespace TPC_BarrientoL
             var indice = int.Parse(e.CommandArgument.ToString());
             var id = int.Parse(dgvMarcas.DataKeys[indice].Value.ToString());
 
-            if (e.CommandName.ToString()== "Eliminar")
+            if (e.CommandName.ToString()== "Eliminar")//sino es Eliminar, es Modificar
             {
+                //falta confirmacion de eliminar...
                 MarcaNegocio negocio = new MarcaNegocio();
                 negocio.Eliminar(id);
+                Response.Redirect("Marca.aspx");
             }
             else
             {
-                //falta confirmacion de eliminar...
                 Response.Redirect("FormMarca.aspx?id=" + id);
             }           
         }

@@ -16,5 +16,14 @@ namespace TPC_BarrientoL
             dgvVentas.DataSource = negocio.Listar();
             dgvVentas.DataBind();
         }
+
+        protected void dgvVentas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            
+        }
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormVenta.aspx");
+        }
     }
 }

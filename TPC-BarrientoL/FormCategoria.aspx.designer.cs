@@ -11,7 +11,7 @@ namespace TPC_BarrientoL
 {
 
 
-    public partial class FormMarca
+    public partial class FormCategoria
     {
 
         /// <summary>

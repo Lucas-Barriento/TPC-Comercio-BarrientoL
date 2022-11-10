@@ -9,7 +9,7 @@ namespace dominio
     public class Venta
     {
         public int IdVenta { get; set; }
-        public int IdCliente { get; set; }
-        public decimal PrecioFinal { get; set; }
+        public Cliente cliente { get; set; }
+        public decimal PrecioTotal { get; set; }
     }
 }

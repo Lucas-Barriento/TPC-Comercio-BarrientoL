@@ -1,10 +1,15 @@
 ﻿using dominio;
 using negocio;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace TPC_BarrientoL
 {
-    public partial class FormMarca : System.Web.UI.Page
+    public partial class FormProveedor : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -13,61 +18,58 @@ namespace TPC_BarrientoL
                 if (!IsPostBack)
                 {
                     int id = int.Parse(Request.QueryString["id"].ToString());
-                    MarcaNegocio negocio = new MarcaNegocio();
-                    Marca seleccionado = negocio.Listar().Find(x => x.Id == id);//busca en la lista la coincidencia
-                                                                                //precargar los datos del id seleccionado
+                    ProveedorNegocio negocio = new ProveedorNegocio();
+                    Proveedor seleccionado = negocio.Listar().Find(x => x.Id == id);//busca en la lista la coincidencia
+                                                                                    //precargar los datos del id seleccionado
                     txtBoxId.Text = seleccionado.Id.ToString();
                     txtBoxId.ReadOnly = true;
                     txtBoxNombre.Text = seleccionado.Nombre.ToString();
                     if (seleccionado.Estado)
                     {
-                        rbActivo.Checked = true;                    }
+                        rbActivo.Checked = true;
+                    }
                     else
                     {
                         rbInactivo.Checked = true;
                     }
                 }
-
             }
             else
             {
                 rbActivo.Checked = true;
             }
-            
             lblId.Visible = false;
             txtBoxId.Visible = false;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            Proveedor proveedor = new Proveedor();
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
-            Marca marca = new Marca();
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            proveedor.Nombre = txtBoxNombre.Text;
 
-            marca.Nombre = txtBoxNombre.Text;
-            
             if (rbActivo.Checked)
             {
-                marca.Estado = true;
+                proveedor.Estado = true;
             }
-            else { marca.Estado = false; }
+            else { proveedor.Estado = false; }
 
             if (Request.QueryString["Id"] != null)
             {
-                marca.Id = int.Parse(txtBoxId.Text.ToString());
-                marcaNegocio.Modificar(marca);
+                proveedor.Id = int.Parse(txtBoxId.Text.ToString());
+                proveedorNegocio.Modificar(proveedor);
             }
-            else {
-                marcaNegocio.Agregar(marca);
+            else
+            {
+                proveedorNegocio.Agregar(proveedor);
             }
-            
-            Response.Redirect("Marca.aspx");
-
+            Response.Redirect("Proveedor.aspx");
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Marca.aspx");
+            Response.Redirect("Proveedor.aspx");
         }
     }
 }

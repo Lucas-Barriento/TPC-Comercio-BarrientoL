@@ -15,5 +15,25 @@ namespace TPC_BarrientoL
             dgvCategorias.DataSource = negocio.Listar();
             dgvCategorias.DataBind();
         }
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormCategoria.aspx");
+        }
+
+        protected void dgvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            var indice = int.Parse(e.CommandArgument.ToString());
+            var id = int.Parse(dgvCategorias.DataKeys[indice].Value.ToString());
+            if (e.CommandName.ToString()=="Eliminar")
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.Eliminar(id);
+                Response.Redirect("Categoria.aspx");
+            }
+            else
+            {
+                Response.Redirect("FormCategoria.aspx?id=" + id);
+            }
+        }
     }
 }

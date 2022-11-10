@@ -16,7 +16,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetConsulta("select Id,Nombre from MARCA");
+                datos.SetConsulta("select Id,Nombre,Estado from MARCA");
                 datos.ejecutarLectura();
 
                 while (datos.LectorSql.Read())
@@ -25,6 +25,7 @@ namespace negocio
                     Marca marca = new Marca();
                     marca.Id = (int)datos.LectorSql["Id"];
                     marca.Nombre = (string)datos.LectorSql["Nombre"];
+                    marca.Estado = (bool)datos.LectorSql["Estado"];
 
                     lista.Add(marca);
                 }
@@ -44,7 +45,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("insert into MARCA (ID,Nombre)values('" + Nuevo.Id + "','" + Nuevo.Nombre);
+                Datos.SetConsulta("insert into MARCA (Nombre,Estado)values('" + Nuevo.Nombre + "','" + Nuevo.Estado + "')");
                 Datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -62,8 +63,9 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("update Marca set Nombre=@Nombre where Id=@id");
+                Datos.SetConsulta("update Marca set Nombre=@Nombre, Estado=@Estado where Id=@id");
                 Datos.SetParametros("@Nombre",marca.Nombre);
+                Datos.SetParametros("@Estado",marca.Estado);
                 Datos.SetParametros("@id", marca.Id);
                 Datos.ejecutarAccion();
             }
