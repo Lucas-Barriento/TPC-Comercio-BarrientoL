@@ -40,7 +40,7 @@ CREATE TABLE DBO.VENTA
 	
 
 CREATE TABLE DBO.COMPRA
-	(ID INT NOT NULL IDENTITY(00000001,1),
+	(ID INT NOT NULL IDENTITY(10100001,1),
 	IDPROVEEDOR INT FOREIGN KEY REFERENCES PROVEEDOR(ID),
 	FECHACOMPRA DATE NOT NULL,
 	PRECIOTOTAL MONEY NOT NULL)
@@ -59,5 +59,6 @@ CREATE TABLE DBO.COMPRA
 	en c# 1 es false
 	update MARCA set ESTADO=1
 
-	select P.Id, P.Nombre, M.Nombre Marca, M.Id IdMar, C.Nombre Categoria, C.Id IdCat, P.Stock, P.StockMinimo, P.PorcentajeGanancia from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id
+	select*from VENTA
 
+	select P.Id, P.Nombre, M.Nombre Marca, C.Nombre Categoria, C.Id IdCat, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id

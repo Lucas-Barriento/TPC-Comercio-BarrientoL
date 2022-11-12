@@ -23,7 +23,7 @@ namespace negocio
                 while (Datos.LectorSql.Read())
                 {
                     Producto Aux = new Producto();
-                    Aux.ID = (int)Datos.LectorSql["Id"];
+                    Aux.Id = (int)Datos.LectorSql["Id"];
                     Aux.Nombre = (string)Datos.LectorSql["Nombre"];
                     
                     Aux.Marca = new Marca();
@@ -59,7 +59,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("insert into PRODUCTO (ID,Nombre,Descripcion,IdMarca,IdCategoria,Stock,StockMinimo,Ganancia,Estado)values('" + Nuevo.ID + "','" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
+                Datos.SetConsulta("insert into PRODUCTO (Nombre,IdMarca,IdCategoria,Stock,StockMinimo,PorcentajeGanancia,Estado)values('" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
                 Datos.SetParametros("@IdMarcas", Nuevo.Marca.Id);
                 Datos.SetParametros("@IdCategorias", Nuevo.Categoria.Id);
                 Datos.ejecutarAccion();
@@ -86,11 +86,39 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
+        }
+        public void Modificar(Producto producto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetConsulta("update Producto set NOMBRE=@Nombre,IDMARCA=@IdMarca,IDCATEGORIA=@IdCategoria,STOCK=@Stock,STOCKMINIMO=@StockMinimo,PORCENTAJEGANANCIA=@PorcentajeGanacia,ESTADO=@Estado where id=@Id");
+                datos.SetParametros("@Id",producto.Id );
+                datos.SetParametros("@Nombre", producto.Nombre);
+                datos.SetParametros("@IdMarca",producto.Marca.Id);
+                datos.SetParametros("@IdCategoria",producto.Categoria.Id);
+                datos.SetParametros("@Stock",producto.Stock);
+                datos.SetParametros("@StockMinimo",producto.StockMinimo);
+                datos.SetParametros("@PorcentajeGanacia",producto.PorcentajeGanancia);
+                datos.SetParametros("@Estado",producto.Estado);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
                 throw ex;
             }
+            finally
+            {
+               datos.cerrarConexion();
+            }
         }
-        //falta la funcion modificar
 
 
 
