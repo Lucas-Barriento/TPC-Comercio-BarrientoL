@@ -35,5 +35,33 @@ textarea {
     background-color: #777;
     border-color: #fff
 }
+div#listaCompra, div#listaVenta {
+    height: 50vh;
+    width: 100%;
+    border: 1px solid #1d2124;
+}
 
+div#grillaProductos {
+    height: 50vh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
 
+.table-condensed tr th {
+    border: 0px solid #6e7bd9;
+    color: white;
+    background-color: #710784;
+}
+.table-condensed, .table-condensed tr td {
+    border: 0px solid #000;
+}
+
+tr:nth-child(even) {
+    background: rgb(160 200 243 / 50%);
+
+}
+
+tr:nth-child(odd) {
+    background: #fff;
+}

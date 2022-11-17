@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class ProductoVenta : Producto
+    public class DetalleTransaccion //detalle de compra y venta
     {
-        public int IdVenta { get; set; }
+        public int Id { get; set; }
+        public int IdProducto { get; set; }
+        public int IdTransaccion { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioParcial { get; set; }
     }

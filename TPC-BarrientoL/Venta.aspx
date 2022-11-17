@@ -5,7 +5,7 @@
     <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormVenta.aspx" />
     <br />
     <br />
-    <asp:GridView runat="server" ID="dgvVentas" AutoGenerateColumns="false" DataKeyNames="IdVenta" OnRowCommand="dgvVentas_RowCommand">
+    <asp:GridView runat="server" ID="dgvVentas" AutoGenerateColumns="false" DataKeyNames="IdVenta" OnRowCommand="dgvVentas_RowCommand" CssClass="table table-condensed table-hover">
         <Columns>
             <asp:BoundField HeaderText="Factura" DataField="IdVenta" />
             <asp:BoundField HeaderText="Apellido" DataField="cliente.Apellido" />

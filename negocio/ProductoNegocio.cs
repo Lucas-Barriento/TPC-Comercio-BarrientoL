@@ -18,7 +18,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id");
+                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria,PROV.id idProv,PROV.Nombre Proveedor, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C, PROVEEDOR PROV where P.IdCategoria = C.Id and P.IdMarca = M.Id and P.IdProveedor=PROV.Id");
                 Datos.ejecutarLectura();
                 while (Datos.LectorSql.Read())
                 {
@@ -33,6 +33,10 @@ namespace negocio
                     Aux.Categoria = new Categoria();
                     Aux.Categoria.Id = (int)Datos.LectorSql["idCat"];
                     Aux.Categoria.Nombre = (string)Datos.LectorSql["Categoria"];
+
+                    Aux.Proveedor= new Proveedor();
+                    Aux.Proveedor.Id= (int)Datos.LectorSql["idProv"];
+                    Aux.Proveedor.Nombre = (string)Datos.LectorSql["Proveedor"];
 
                     Aux.Stock = (int)Datos.LectorSql["Stock"];
                     Aux.StockMinimo = (int)Datos.LectorSql["StockMinimo"];
@@ -59,9 +63,10 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("insert into PRODUCTO (Nombre,IdMarca,IdCategoria,Stock,StockMinimo,PorcentajeGanancia,Estado)values('" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
+                Datos.SetConsulta("insert into PRODUCTO (Nombre,IdMarca,IdCategoria,IdProveedor,Stock,StockMinimo,PorcentajeGanancia,Estado)values('" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,@idProveedores,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
                 Datos.SetParametros("@IdMarcas", Nuevo.Marca.Id);
                 Datos.SetParametros("@IdCategorias", Nuevo.Categoria.Id);
+                Datos.SetParametros("@IdProveedores", Nuevo.Proveedor.Id);
                 Datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -98,11 +103,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetConsulta("update Producto set NOMBRE=@Nombre,IDMARCA=@IdMarca,IDCATEGORIA=@IdCategoria,STOCK=@Stock,STOCKMINIMO=@StockMinimo,PORCENTAJEGANANCIA=@PorcentajeGanacia,ESTADO=@Estado where id=@Id");
+                datos.SetConsulta("update Producto set NOMBRE=@Nombre,IDMARCA=@IdMarca,IDCATEGORIA=@IdCategoria,IDPROVEEDOR=@IdProveedor,STOCK=@Stock,STOCKMINIMO=@StockMinimo,PORCENTAJEGANANCIA=@PorcentajeGanacia,ESTADO=@Estado where id=@Id");
                 datos.SetParametros("@Id",producto.Id );
                 datos.SetParametros("@Nombre", producto.Nombre);
                 datos.SetParametros("@IdMarca",producto.Marca.Id);
                 datos.SetParametros("@IdCategoria",producto.Categoria.Id);
+                datos.SetParametros("@IdProveedor",producto.Proveedor.Id);
                 datos.SetParametros("@Stock",producto.Stock);
                 datos.SetParametros("@StockMinimo",producto.StockMinimo);
                 datos.SetParametros("@PorcentajeGanacia",producto.PorcentajeGanancia);

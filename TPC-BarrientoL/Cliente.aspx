@@ -4,14 +4,14 @@
     <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormCliente.aspx" />
     <br />
     <br />
-    <asp:GridView runat="server" ID="dgvClientes" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvClientes_RowCommand">
+    <asp:GridView runat="server" ID="dgvClientes" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvClientes_RowCommand" CssClass="table table-condensed table-hover">
         <Columns>
             <asp:BoundField HeaderText="DNI" DataField="Id" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
             <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
             <asp:buttonfield ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar"  />
-            <asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />
+            <%--<asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
             
         </Columns>
     </asp:GridView>

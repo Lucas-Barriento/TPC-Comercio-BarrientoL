@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,19 @@ namespace TPC_BarrientoL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ProductoNegocio negocio = new ProductoNegocio();
+            dgvProductos.DataSource = negocio.ListarProductos();
+            dgvProductos.DataBind();
+        }
+
+        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //agregar producto a la compra
+            var indice = int.Parse(e.CommandArgument.ToString());
+            var id = int.Parse(dgvProductos.DataKeys[indice].Value.ToString());
+            
+            //funcion de agregar compra y sumar stock a la cantidad del producto, ver como usar proveedor
+
 
         }
     }

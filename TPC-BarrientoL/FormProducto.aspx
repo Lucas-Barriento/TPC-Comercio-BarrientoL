@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormProducto.aspx.cs" Inherits="TPC_BarrientoL.FormProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <%-- ID Nombre Marca Categoria Stock StockMinimo PorcentajeGanancia Estado --%>
+        
         <div class="col-6">
             <div class="mb-3">
                 <asp:Label ID="lblId" Text="Id" runat="server" for="txtBoxId" />
@@ -18,6 +18,10 @@
             <div class="mb-3">
                 <label for="ddlCategoria" class="form-label">Categoria</label>
                 <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
+            </div>
+            <div class="mb-3">
+                <label for="ddlProveedor" class="form-label">Proveedor</label>
+                <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select"></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label for="txtBoxStock" class="form-label">Stock</label>

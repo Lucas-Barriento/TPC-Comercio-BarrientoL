@@ -16,13 +16,13 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select V.IdVenta,C.Id IdCliente, C.Nombre Nombre,C.Apellido Apellido,V.PrecioFinal from VENTA V,CLIENTE C where v.IdCliente=c.Id");
+                Datos.SetConsulta("select V.Id IdVenta,C.Id IdCliente, C.Nombre Nombre,C.Apellido Apellido,V.PrecioFinal from VENTA V,CLIENTE C where v.IdCliente=c.Id");
                 Datos.ejecutarLectura();
 
                 while (Datos.LectorSql.Read())
                 {
                     Venta Venta = new Venta();
-                    Venta.IdVenta = (int)Datos.LectorSql["IDVENTA"];
+                    Venta.IdVenta = (int)Datos.LectorSql["IdVenta"];
                     Venta.PrecioTotal = (decimal)Datos.LectorSql["PRECIOFINAL"];
 
                     Venta.cliente = new Cliente();

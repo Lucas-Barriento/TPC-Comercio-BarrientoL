@@ -5,7 +5,7 @@
     <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormCompra.aspx" />
     <br />
     <br />
-        <asp:GridView runat="server" ID="dgvCompras" DataKeyNames="Id" AutoGenerateColumns="false" OnRowCommand="dgvCompras_RowCommand">
+        <asp:GridView runat="server" ID="dgvCompras" DataKeyNames="Id" AutoGenerateColumns="false" OnRowCommand="dgvCompras_RowCommand" CssClass="table table-condensed table-hover">
             <Columns>
                 <%-- cargar datos Proveedor FechaCompra PrecioTotal  --%>
                 <asp:BoundField HeaderText="Proveedor" DataField="Proveedor.Nombre" />
@@ -13,7 +13,7 @@
                 <asp:BoundField HeaderText="Total" DataField="PrecioTotal" />
                 <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
                 <asp:buttonfield ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar"  />
-                <asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />
+                <%--<asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
             </Columns>
         </asp:GridView>
 

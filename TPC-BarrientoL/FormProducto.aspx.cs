@@ -28,8 +28,15 @@ namespace TPC_BarrientoL
                 ddlCategoria.DataValueField = "Id";
                 ddlCategoria.DataTextField = "Nombre";
                 ddlCategoria.DataBind();
+
+                ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+                List<Proveedor> listaProveedores = proveedorNegocio.Listar();
+                ddlProveedor.DataSource = listaProveedores;
+                ddlProveedor.DataValueField = "Id";
+                ddlProveedor.DataTextField = "Nombre";
+                ddlProveedor.DataBind();
             }
-            
+
             if (Request.QueryString["Id"] != null)//precarga los datos del seleccionado
             {
                 if (!IsPostBack)
@@ -42,7 +49,8 @@ namespace TPC_BarrientoL
                     txtBoxId.ReadOnly = true;
                     txtBoxNombre.Text = seleccionado.Nombre.ToString();
                     ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
-                    ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString() ;
+                    ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
+                    ddlProveedor.SelectedValue = seleccionado.Proveedor.Id.ToString();
                     txtBoxStock.Text = seleccionado.Stock.ToString();
                     txtBoxStockMinimo.Text = seleccionado.StockMinimo.ToString();
                     txtBoxGanancia.Text = seleccionado.PorcentajeGanancia.ToString();
@@ -59,11 +67,12 @@ namespace TPC_BarrientoL
             }
             else
             {
-                //si se agrega un nuevo producto se precargan los valores
+                //si se agrega un nuevo producto se precargan los valores vacios
 
                 ddlMarca.Items.Insert(0, new ListItem(""));//agrega el nuevo item vacio
                 ddlCategoria.Items.Insert(0, new ListItem(""));
-                rbInactivo.Checked = true;
+                ddlProveedor.Items.Insert(0, new ListItem(""));
+                rbInactivo.Checked = false;
             }
             lblId.Visible = false;
             txtBoxId.Visible = false;
@@ -74,7 +83,6 @@ namespace TPC_BarrientoL
         {
             Producto producto = new Producto();
             ProductoNegocio productoNegocio = new ProductoNegocio();
-            producto.Id = int.Parse(txtBoxId.Text);
             producto.Nombre = txtBoxNombre.Text;
 
             producto.Marca = new Marca();
@@ -82,6 +90,10 @@ namespace TPC_BarrientoL
 
             producto.Categoria = new Categoria();
             producto.Categoria.Id = int.Parse(ddlCategoria.SelectedValue.ToString());
+
+            producto.Proveedor = new Proveedor();
+            producto.Proveedor.Id = int.Parse(ddlProveedor.SelectedValue.ToString());
+
             producto.Stock = int.Parse(txtBoxStock.Text);
             producto.StockMinimo = int.Parse(txtBoxStockMinimo.Text);
             producto.PorcentajeGanancia = decimal.Parse(txtBoxGanancia.Text);
@@ -93,6 +105,7 @@ namespace TPC_BarrientoL
 
             if (Request.QueryString["Id"] != null)
             {
+                producto.Id = int.Parse(txtBoxId.Text);
                 productoNegocio.Modificar(producto);
             }
             else

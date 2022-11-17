@@ -4,12 +4,12 @@
     <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormCategoria.aspx"/>
     <br />
     <br />
-    <asp:GridView runat="server" ID="dgvCategorias" DataKeyNames="Id" OnRowCommand="dgvCategorias_RowCommand" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="dgvCategorias" DataKeyNames="Id" OnRowCommand="dgvCategorias_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
         <Columns>
             <asp:BoundField HeaderText="Categoria" DataField="Nombre" />
             <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
             <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
-            <asp:ButtonField ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />
+            <%--<asp:ButtonField ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
         </Columns>
     </asp:GridView>
 </asp:Content>
