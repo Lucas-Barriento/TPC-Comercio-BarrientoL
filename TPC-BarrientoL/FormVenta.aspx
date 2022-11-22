@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormVenta.aspx.cs" Inherits="TPC_BarrientoL.FormVenta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="mb-3">
-        <label for="ddlProveedor" class="form-label">Proveedor</label>
-        <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select"></asp:DropDownList>
-    </div>
+
     <div class="mb-3">
         <label for="ddlCliente" class="form-label">Cliente</label>
         <asp:DropDownList ID="ddlCliente" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -25,4 +22,7 @@
                 </Columns>
             </asp:GridView>
         </div>
+    <div id="listaVenta">
+        <p>lista venta</p>
+    </div>
 </asp:Content>

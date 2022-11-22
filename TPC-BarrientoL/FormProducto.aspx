@@ -12,16 +12,17 @@
                 <asp:TextBox ID="txtBoxNombre" runat="server" CssClass="form-control" />
             </div>
             <div class="mb-3">
-                <label for="ddlMarca" class="form-label">Marca</label>
+                <label for="ddlMarca" class="form-label" >Marca</label>
                 <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-select"></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label for="ddlCategoria" class="form-label">Categoria</label>
                 <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
             </div>
-            <div class="mb-3">
-                <label for="ddlProveedor" class="form-label">Proveedor</label>
-                <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select"></asp:DropDownList>
+            <label for="listacheck" class="form-label">Proveedores</label>
+            <div class="mb-3"style="border:1px solid black; height:100px;overflow:auto;width:200px">
+                <asp:CheckBoxList runat="server" ID="listacheck" style="width:100%;">
+                </asp:CheckBoxList>
             </div>
             <div class="mb-3">
                 <label for="txtBoxStock" class="form-label">Stock</label>

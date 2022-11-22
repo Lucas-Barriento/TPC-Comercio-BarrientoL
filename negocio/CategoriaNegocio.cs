@@ -87,6 +87,7 @@ namespace negocio
             {
                 throw ex;
             }
+            finally { Datos.cerrarConexion(); }
         }
     }
 }

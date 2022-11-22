@@ -24,12 +24,17 @@ namespace negocio
             Conexion = new SqlConnection("server = .\\SQLEXPRESS; database = COMERCIO_DB; integrated security = true");
             Comando = new SqlCommand();
         }
-
+            
         //se hace la consulta sql
         public void SetConsulta(string consulta)
         {
             Comando.CommandType = System.Data.CommandType.Text;
             Comando.CommandText = consulta;
+        }
+        public void setProcedimiento(string procedimiento)
+        {
+            Comando.CommandType = System.Data.CommandType.StoredProcedure;
+            Comando.CommandText = procedimiento;
         }
         //Ejecuta la lectura y carga el lector (objeto)
         public void ejecutarLectura()
@@ -57,7 +62,6 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -65,6 +69,7 @@ namespace negocio
         public void SetParametros(string nombre, object valor)//sirve para agregar parametros al comando, recibe el nombre de la variable y el objeto
         {
             Comando.Parameters.AddWithValue(nombre, valor);
+            
         }
 
         public void cerrarConexion()
@@ -76,7 +81,5 @@ namespace negocio
             Conexion.Close();
         }
     }
-
-
-    
+   
 }

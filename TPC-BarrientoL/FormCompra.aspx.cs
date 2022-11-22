@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,13 @@ namespace TPC_BarrientoL
             ProductoNegocio negocio = new ProductoNegocio();
             dgvProductos.DataSource = negocio.ListarProductos();
             dgvProductos.DataBind();
+
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+            List<Proveedor> listaProveedores = proveedorNegocio.Listar();
+            ddlProveedor.DataSource = listaProveedores;
+            ddlProveedor.DataValueField = "Id";
+            ddlProveedor.DataTextField = "Nombre";
+            ddlProveedor.DataBind();
         }
 
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)

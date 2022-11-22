@@ -20,22 +20,16 @@ namespace TPC_BarrientoL
         {
             ProductoNegocio negocio = new ProductoNegocio();
             dgvProductos.DataSource = negocio.ListarProductos();
-            dgvProductos.DataBind();
-
-            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
-            List<Proveedor> listaProveedores = proveedorNegocio.Listar();
-            ddlProveedor.DataSource = listaProveedores;
-            ddlProveedor.DataValueField = "Id";
-            ddlProveedor.DataTextField = "Nombre";
-            ddlProveedor.DataBind();
+            dgvProductos.DataBind();            
 
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             List<Cliente> listaClientes = clienteNegocio.Listar();
+                       
             ddlCliente.DataSource = listaClientes;
             ddlCliente.DataValueField = "Id";
-            ddlCliente.DataTextField = "Nombre";
+            ddlCliente.DataTextField = "Apellido";
             ddlCliente.DataBind();
-
+            ddlCliente.Items.Insert(0, new ListItem(""));
         }
 
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)

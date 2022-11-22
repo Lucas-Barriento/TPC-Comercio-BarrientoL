@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormCompra.aspx.cs" Inherits="TPC_BarrientoL.FormCompra" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+        <div class="mb-3">
+        <label for="ddlProveedor" class="form-label">Proveedor</label>
+        <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select"></asp:DropDownList>
+    </div>
     <div id="grillaProductos">
     <asp:GridView runat="server" ID="dgvProductos" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvProductos_RowCommand" CssClass="table table-condensed table-hover">
         <Columns>

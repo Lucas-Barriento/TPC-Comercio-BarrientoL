@@ -24,6 +24,10 @@ namespace TPC_BarrientoL
                     txtBoxId.Text = seleccionado.Id.ToString();
                     txtBoxId.ReadOnly = true;
                     txtBoxNombre.Text = seleccionado.Nombre.ToString();
+                    txtBoxDomicilio.Text = seleccionado.Domicilio.ToString();
+                    txtBoxLocalidad.Text = seleccionado.Localidad.ToString();
+                    txtBoxEmail.Text = seleccionado.Email.ToString();
+                    txtBoxTelefono.Text = seleccionado.Telefono.ToString();
                     if (seleccionado.Estado)
                     {
                         rbActivo.Checked = true;
@@ -48,6 +52,10 @@ namespace TPC_BarrientoL
             ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
             proveedor.Nombre = txtBoxNombre.Text;
+            proveedor.Domicilio = txtBoxDomicilio.Text;
+            proveedor.Localidad = txtBoxLocalidad.Text;
+            proveedor.Email = txtBoxEmail.Text;
+            proveedor.Telefono = txtBoxTelefono.Text;
 
             if (rbActivo.Checked)
             {

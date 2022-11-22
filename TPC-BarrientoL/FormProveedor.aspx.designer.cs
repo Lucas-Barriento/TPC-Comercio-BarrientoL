@@ -42,6 +42,42 @@ namespace TPC_BarrientoL
         protected global::System.Web.UI.WebControls.TextBox txtBoxNombre;
 
         /// <summary>
+        /// Control txtBoxDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxDomicilio;
+
+        /// <summary>
+        /// Control txtBoxLocalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxLocalidad;
+
+        /// <summary>
+        /// Control txtBoxEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxEmail;
+
+        /// <summary>
+        /// Control txtBoxTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxTelefono;
+
+        /// <summary>
         /// Control rbActivo.
         /// </summary>
         /// <remarks>

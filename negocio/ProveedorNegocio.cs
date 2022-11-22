@@ -15,7 +15,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select Id,Nombre,Estado from PROVEEDOR");
+                Datos.SetConsulta("select Id,Nombre,Domicilio,Localidad,Email,Telefono,Estado from PROVEEDOR");
                 Datos.ejecutarLectura();
 
                 while (Datos.LectorSql.Read())
@@ -23,6 +23,10 @@ namespace negocio
                     Proveedor Proveedor = new Proveedor();
                     Proveedor.Id = (int)Datos.LectorSql["Id"];
                     Proveedor.Nombre = (string)Datos.LectorSql["Nombre"];
+                    Proveedor.Domicilio = (string)Datos.LectorSql["Domicilio"];
+                    Proveedor.Localidad = (string)Datos.LectorSql["Localidad"];
+                    Proveedor.Email = (string)Datos.LectorSql["Email"];
+                    Proveedor.Telefono = (string)Datos.LectorSql["Telefono"];
                     Proveedor.Estado = (bool)Datos.LectorSql["Estado"];
 
                     Lista.Add(Proveedor);
@@ -43,7 +47,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("insert into PROVEEDOR (Nombre,Estado)values('" + Nuevo.Nombre + "','" + Nuevo.Estado + "')");
+                Datos.SetConsulta("insert into PROVEEDOR (Nombre,Domicilio,Localidad,Email,Telefono,Estado)values('" + Nuevo.Nombre + "','" + Nuevo.Domicilio + "','"+Nuevo.Localidad+"','"+Nuevo.Email+"','"+Nuevo.Telefono+"','"+ Nuevo.Estado + "')");
                 Datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -61,8 +65,12 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("update CATEGORIA set Nombre=@Nombre, Estado=@Estado where Id=@id");
+                Datos.SetConsulta("update PROVEEDOR set Nombre=@Nombre,Domicilio=@domicilio,Localidad=@localidad,Email=@email,Telefono=@telefono, Estado=@Estado where Id=@id");
                 Datos.SetParametros("@Nombre", proveedor.Nombre);
+                Datos.SetParametros("@Domicilio",proveedor.Domicilio);
+                Datos.SetParametros("@Localidad", proveedor.Localidad);
+                Datos.SetParametros("@email", proveedor.Email);
+                Datos.SetParametros("@telefono", proveedor.Telefono);
                 Datos.SetParametros("@Estado", proveedor.Estado);
                 Datos.SetParametros("@id", proveedor.Id);
                 Datos.ejecutarAccion();

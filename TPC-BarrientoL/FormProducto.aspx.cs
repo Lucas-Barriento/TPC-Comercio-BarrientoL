@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 
 namespace TPC_BarrientoL
 {
     public partial class FormProducto : System.Web.UI.Page
     {
+        public List<Proveedor> listaProveedores;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,12 +31,13 @@ namespace TPC_BarrientoL
                 ddlCategoria.DataTextField = "Nombre";
                 ddlCategoria.DataBind();
 
+                //precarga de proveedores
                 ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
-                List<Proveedor> listaProveedores = proveedorNegocio.Listar();
-                ddlProveedor.DataSource = listaProveedores;
-                ddlProveedor.DataValueField = "Id";
-                ddlProveedor.DataTextField = "Nombre";
-                ddlProveedor.DataBind();
+                listaProveedores = proveedorNegocio.Listar();
+                listacheck.DataSource = listaProveedores;
+                listacheck.DataValueField = "Id";
+                listacheck.DataTextField = "Nombre";
+                listacheck.DataBind();
             }
 
             if (Request.QueryString["Id"] != null)//precarga los datos del seleccionado
@@ -50,7 +53,17 @@ namespace TPC_BarrientoL
                     txtBoxNombre.Text = seleccionado.Nombre.ToString();
                     ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
                     ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
-                    ddlProveedor.SelectedValue = seleccionado.Proveedor.Id.ToString();
+
+                    Proveedor_productoNegocio proveedor_ProductoNegocio = new Proveedor_productoNegocio();
+                    List<Proveedor_Producto> listaProveedor_Producto = proveedor_ProductoNegocio.Listar();
+                    foreach (var aux in listaProveedor_Producto)
+                    {
+                        if (aux.IdProducto == seleccionado.Id)//si el prod seleccionado esta en la lista de provProd lo tilda
+                        {
+                            listacheck.Items.FindByValue(aux.IdProveedor.ToString()).Selected = true;
+                        }
+                    }
+
                     txtBoxStock.Text = seleccionado.Stock.ToString();
                     txtBoxStockMinimo.Text = seleccionado.StockMinimo.ToString();
                     txtBoxGanancia.Text = seleccionado.PorcentajeGanancia.ToString();
@@ -68,10 +81,8 @@ namespace TPC_BarrientoL
             else
             {
                 //si se agrega un nuevo producto se precargan los valores vacios
-
                 ddlMarca.Items.Insert(0, new ListItem(""));//agrega el nuevo item vacio
                 ddlCategoria.Items.Insert(0, new ListItem(""));
-                ddlProveedor.Items.Insert(0, new ListItem(""));
                 rbInactivo.Checked = false;
             }
             lblId.Visible = false;
@@ -81,8 +92,10 @@ namespace TPC_BarrientoL
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Producto producto = new Producto();
             ProductoNegocio productoNegocio = new ProductoNegocio();
+            Proveedor_productoNegocio proveedor_ProductoNegocio = new Proveedor_productoNegocio();
+
+            Producto producto = new Producto();
             producto.Nombre = txtBoxNombre.Text;
 
             producto.Marca = new Marca();
@@ -90,9 +103,6 @@ namespace TPC_BarrientoL
 
             producto.Categoria = new Categoria();
             producto.Categoria.Id = int.Parse(ddlCategoria.SelectedValue.ToString());
-
-            producto.Proveedor = new Proveedor();
-            producto.Proveedor.Id = int.Parse(ddlProveedor.SelectedValue.ToString());
 
             producto.Stock = int.Parse(txtBoxStock.Text);
             producto.StockMinimo = int.Parse(txtBoxStockMinimo.Text);
@@ -107,10 +117,32 @@ namespace TPC_BarrientoL
             {
                 producto.Id = int.Parse(txtBoxId.Text);
                 productoNegocio.Modificar(producto);
+
+                proveedor_ProductoNegocio.Eliminar((int.Parse(txtBoxId.Text)));
+                foreach (ListItem item in listacheck.Items)
+                {
+                    if (item.Selected)
+                    {
+                        Proveedor_Producto proveedor_Producto = new Proveedor_Producto();
+                        proveedor_Producto.IdProducto = int.Parse(txtBoxId.Text);
+                        proveedor_Producto.IdProveedor = int.Parse(item.Value.ToString());
+                        proveedor_ProductoNegocio.Agregar(proveedor_Producto);
+                    }
+                }
             }
             else
             {
                 productoNegocio.Agregar(producto);
+                foreach (ListItem item in listacheck.Items)
+                {
+                    if (item.Selected)
+                    {
+                        AccesoDatos datos = new AccesoDatos();
+                        Proveedor_Producto proveedor_Producto = new Proveedor_Producto();
+                        proveedor_Producto.IdProveedor = int.Parse(item.Value.ToString());
+                        proveedor_ProductoNegocio.AgregarConSP(proveedor_Producto);
+                    }
+                }
             }
             Response.Redirect("Producto.aspx");
         }
