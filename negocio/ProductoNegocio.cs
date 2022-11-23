@@ -54,6 +54,49 @@ namespace negocio
             }
 
         }
+
+        public List<Producto> FiltrarProductosXProveedor(int idProveedor)
+        {
+            List<Producto> Lista = new List<Producto>();
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id and P.id in (select IDPRODUCTO from PROVEEDORES_PRODUCTOS where IDPROVEEDOR= '"+idProveedor+"')");
+                Datos.ejecutarLectura();
+                while (Datos.LectorSql.Read())
+                {
+                    Producto Aux = new Producto();
+                    Aux.Id = (int)Datos.LectorSql["Id"];
+                    Aux.Nombre = (string)Datos.LectorSql["Nombre"];
+
+                    Aux.Marca = new Marca();
+                    Aux.Marca.Id = (int)Datos.LectorSql["idMar"];
+                    Aux.Marca.Nombre = (string)Datos.LectorSql["Marca"];
+
+                    Aux.Categoria = new Categoria();
+                    Aux.Categoria.Id = (int)Datos.LectorSql["idCat"];
+                    Aux.Categoria.Nombre = (string)Datos.LectorSql["Categoria"];
+
+                    Aux.Stock = (int)Datos.LectorSql["Stock"];
+                    Aux.StockMinimo = (int)Datos.LectorSql["StockMinimo"];
+                    Aux.PorcentajeGanancia = (decimal)Datos.LectorSql["PorcentajeGanancia"];
+                    Aux.Estado = (bool)Datos.LectorSql["Estado"];
+                    Lista.Add(Aux);
+
+                }
+                return Lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.cerrarConexion();
+            }
+
+        }
+
         public void Agregar(Producto Nuevo)
         {
             //abrir conexion a base de datos

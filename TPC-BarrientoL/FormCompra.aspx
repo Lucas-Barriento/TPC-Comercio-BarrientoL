@@ -2,9 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <div class="mb-3">
         <label for="ddlProveedor" class="form-label">Proveedor</label>
-        <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select"></asp:DropDownList>
+        <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
     </div>
-    <div id="grillaProductos">
+
+    <div id="grillaProductos">  
     <asp:GridView runat="server" ID="dgvProductos" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvProductos_RowCommand" CssClass="table table-condensed table-hover">
         <Columns>
             <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
