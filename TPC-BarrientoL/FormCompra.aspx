@@ -12,18 +12,61 @@
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
             <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
+            <asp:BoundField HeaderText="Precio" DataField="Precio" />
             <asp:BoundField HeaderText="Stock" DataField="Stock" />
-            <asp:TemplateField HeaderText="Cantidad">
+<%--            <asp:TemplateField HeaderText="Cantidad">
                 <ItemTemplate>
-                    <asp:TextBox TextMode="Number" runat="server" min="1" step="1" Width="70px" />
-                </ItemTemplate>
-            </asp:TemplateField>
-
-               <asp:buttonfield ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar"  />
+                       <asp:TextBox TextMode="Number" runat="server" min="1" step="1" Width="70px" ID="txtBoxCantidad"  />
+                    </ItemTemplate>
+            </asp:TemplateField>--%>
+              <asp:buttonfield ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar"/>
         </Columns>
     </asp:GridView>
-    </div>
+    </div>    
     <div id="listaCompra">
-        <p>lista compra</p>
+<%--        <asp:GridView ID="dgvListaCompra" runat="server" AutoGenerateColumns="false" AutoPostBack="true" >
+            <Columns>
+                <asp:BoundField HeaderText="Id" DataField="ID" />
+                <asp:BoundField HeaderText="IdProducto" DataField="IdProducto" />
+                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                <asp:BoundField HeaderText="Precio" DataField="PrecioParcial" />
+            </Columns>
+        </asp:GridView>--%>
+        <%if (CompraSession().Count > 0)
+            {%>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <p>Producto</p>
+                </div>
+                <div class="col">
+                    <p>Cantidad</p>
+                </div>
+                <div class="col">
+                    <p>Precio Parcial</p>
+                </div>
+            </div>
+        </div>
+        <%foreach (var item in CompraSession())
+            {%>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <p><%:productos.Find(x=>x.Id==item.IdProducto).Nombre%></p>
+                </div>
+                <div class="col">
+                    <p><%:item.Cantidad%></p>
+                </div>
+                <div class="col">
+                    <p>$<%:item.PrecioParcial*item.Cantidad%></p>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+        <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" />
+        <asp:Button Text="Finalizar Compra" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" />
+
+        <% } %>
     </div>
 </asp:Content>

@@ -24,7 +24,7 @@ namespace negocio
                     Compra Compra = new Compra();
                     Compra.ID = (int)Datos.LectorSql["Id"];
                     Compra.FechaCompra = (DateTime)Datos.LectorSql["FechaCompra"];
-                    Compra.PrecioTotal = (decimal)Datos.LectorSql["PrecioCompra"];
+                    Compra.PrecioTotal = (decimal)Datos.LectorSql["PrecioTotal"];
 
                     Compra.Proveedor = new Proveedor();
                     Compra.Proveedor.Id = (int)Datos.LectorSql["IdProv"];
@@ -41,6 +41,27 @@ namespace negocio
             finally
             {
                 Datos.cerrarConexion();
+            }
+        }
+
+        public void Agregar(Compra nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetConsulta("insert into COMPRA (IDPROVEEDOR,FECHACOMPRA,PRECIOTOTAL)values(@IdProveedor,'"+nuevo.FechaCompra+"','"+Convert.ToDouble(nuevo.PrecioTotal)+"')");
+                datos.SetParametros("@IdProveedor", nuevo.Proveedor.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

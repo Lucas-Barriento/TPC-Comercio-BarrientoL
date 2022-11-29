@@ -19,7 +19,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id");
+                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria,P.Precio, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id");
                 Datos.ejecutarLectura();
                 while (Datos.LectorSql.Read())
                 {
@@ -39,6 +39,7 @@ namespace negocio
                     Aux.StockMinimo = (int)Datos.LectorSql["StockMinimo"];
                     Aux.PorcentajeGanancia = (decimal)Datos.LectorSql["PorcentajeGanancia"];
                     Aux.Estado = (bool)Datos.LectorSql["Estado"];
+                    Aux.Precio = (decimal)Datos.LectorSql["Precio"];
                     Lista.Add(Aux);
 
                 }
@@ -61,7 +62,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria, P.Stock, P.StockMinimo, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id and P.id in (select IDPRODUCTO from PROVEEDORES_PRODUCTOS where IDPROVEEDOR= '"+idProveedor+"')");
+                Datos.SetConsulta("select P.Id, P.Nombre,M.id idMar, M.Nombre Marca,C.id idCat, C.Nombre Categoria, P.Stock, P.StockMinimo,P.Precio, P.PorcentajeGanancia,P.Estado from PRODUCTO P, MARCA M, CATEGORIA C where P.IdCategoria = C.Id and P.IdMarca = M.Id and P.id in (select IDPRODUCTO from PROVEEDORES_PRODUCTOS where IDPROVEEDOR= '"+idProveedor+"')");
                 Datos.ejecutarLectura();
                 while (Datos.LectorSql.Read())
                 {
@@ -79,6 +80,7 @@ namespace negocio
 
                     Aux.Stock = (int)Datos.LectorSql["Stock"];
                     Aux.StockMinimo = (int)Datos.LectorSql["StockMinimo"];
+                    Aux.Precio = (decimal)Datos.LectorSql["Precio"];
                     Aux.PorcentajeGanancia = (decimal)Datos.LectorSql["PorcentajeGanancia"];
                     Aux.Estado = (bool)Datos.LectorSql["Estado"];
                     Lista.Add(Aux);
@@ -103,7 +105,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("insert into PRODUCTO (Nombre,IdMarca,IdCategoria,Stock,StockMinimo,PorcentajeGanancia,Estado)values('" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
+                Datos.SetConsulta("insert into PRODUCTO (Nombre,IdMarca,IdCategoria,Stock,StockMinimo,Precio,PorcentajeGanancia,Estado)values('" + Nuevo.Nombre + "',@IdMarcas,@IdCategorias,'" + Nuevo.Stock + "','" + Nuevo.StockMinimo + "','"+Nuevo.Precio+"','" + Nuevo.PorcentajeGanancia + "','"+Nuevo.Estado+"')");
                 Datos.SetParametros("@IdMarcas", Nuevo.Marca.Id);
                 Datos.SetParametros("@IdCategorias", Nuevo.Categoria.Id);
                 Datos.ejecutarAccion();
@@ -149,6 +151,7 @@ namespace negocio
                 datos.SetParametros("@IdCategoria",producto.Categoria.Id);
                 datos.SetParametros("@Stock",producto.Stock);
                 datos.SetParametros("@StockMinimo",producto.StockMinimo);
+                datos.SetParametros("@Precio",producto.Precio);
                 datos.SetParametros("@PorcentajeGanacia",producto.PorcentajeGanancia);
                 datos.SetParametros("@Estado",producto.Estado);
                 datos.ejecutarAccion();

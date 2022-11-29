@@ -33,6 +33,10 @@
                 <asp:TextBox ID="txtBoxStockMinimo" runat="server" CssClass="form-control" />
             </div>
             <div class="mb-3">
+                <label for="txtPrecio" class="form-label">Precio</label>
+                <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
+            </div>
+            <div class="mb-3">
                 <label for="txtBoxGanancia" class="form-label">% Ganancia</label>
                 <asp:TextBox ID="txtBoxGanancia" runat="server" CssClass="form-control" />
             </div>

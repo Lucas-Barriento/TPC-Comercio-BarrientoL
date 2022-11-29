@@ -51,6 +51,7 @@ namespace TPC_BarrientoL
                     txtBoxId.Text = seleccionado.Id.ToString();
                     txtBoxId.ReadOnly = true;
                     txtBoxNombre.Text = seleccionado.Nombre.ToString();
+                    txtPrecio.Text = seleccionado.Precio.ToString();
                     ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
                     ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
 
@@ -66,6 +67,7 @@ namespace TPC_BarrientoL
 
                     txtBoxStock.Text = seleccionado.Stock.ToString();
                     txtBoxStockMinimo.Text = seleccionado.StockMinimo.ToString();
+                    txtPrecio.Text = seleccionado.Precio.ToString();
                     txtBoxGanancia.Text = seleccionado.PorcentajeGanancia.ToString();
                     if (seleccionado.Estado)
                     {
@@ -106,6 +108,7 @@ namespace TPC_BarrientoL
 
             producto.Stock = int.Parse(txtBoxStock.Text);
             producto.StockMinimo = int.Parse(txtBoxStockMinimo.Text);
+            producto.Precio = decimal.Parse(txtPrecio.Text);
             producto.PorcentajeGanancia = decimal.Parse(txtBoxGanancia.Text);
             if (rbActivo.Checked)
             {
@@ -118,7 +121,7 @@ namespace TPC_BarrientoL
                 producto.Id = int.Parse(txtBoxId.Text);
                 productoNegocio.Modificar(producto);
 
-                proveedor_ProductoNegocio.Eliminar((int.Parse(txtBoxId.Text)));
+                proveedor_ProductoNegocio.Eliminar((int.Parse(txtBoxId.Text)));//borra todos los proveedores asociados al producto
                 foreach (ListItem item in listacheck.Items)
                 {
                     if (item.Selected)

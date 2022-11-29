@@ -54,7 +54,7 @@ namespace negocio
                 Datos.cerrarConexion(); 
             }
         }
-        public void AgregarConSP(Proveedor_Producto nuevo)
+        public void AgregarConSP(Proveedor_Producto nuevo)//se agregan los proveedores al producto recien creado
         {
             AccesoDatos datos= new AccesoDatos();
             try

@@ -14,6 +14,7 @@ namespace dominio
         public Categoria Categoria { get; set; }
         public int Stock { get; set; }
         public int StockMinimo { get; set; }
+        public decimal Precio { get; set; }
         public decimal PorcentajeGanancia { get; set; }
         public bool Estado { get; set; }
     }
