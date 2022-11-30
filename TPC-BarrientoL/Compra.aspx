@@ -7,14 +7,10 @@
     <br />
         <asp:GridView runat="server" ID="dgvCompras" DataKeyNames="Id" AutoGenerateColumns="false" OnRowCommand="dgvCompras_RowCommand" CssClass="table table-condensed table-hover">
             <Columns>
-                <%-- cargar datos Proveedor FechaCompra PrecioTotal  --%>
                 <asp:BoundField HeaderText="Proveedor" DataField="Proveedor.Nombre" />
                 <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" DataFormatString = "{0:dd/MM/yyyy}"/>
                 <asp:BoundField HeaderText="Total" DataField="PrecioTotal" DataFormatString="{0:0.00}"/>
                 <asp:buttonfield ShowHeader="false" CommandName="Detalle" ButtonType="Button" Text="Ver Detalle" />
-<%--<%--            <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-                <asp:buttonfield ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar"  />--%>
-                
             </Columns>
         </asp:GridView>
 

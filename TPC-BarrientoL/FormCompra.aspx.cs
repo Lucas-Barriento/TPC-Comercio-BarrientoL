@@ -115,7 +115,7 @@ namespace TPC_BarrientoL
             foreach (var item in detalleTransaccionList)
             {
                 //guardar los items de la compra
-                detalleTransactionNegocio.AgregarConSP(item);
+                detalleTransactionNegocio.AgregarCompraConSP(item);
 
                 //actualiza el stock de los productos
                 Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == item.IdProducto);

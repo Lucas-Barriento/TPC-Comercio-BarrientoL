@@ -38,7 +38,7 @@ namespace negocio
             }
         }
 
-        public void AgregarConSP(DetalleTransaccion nuevo)
+        public void AgregarCompraConSP(DetalleTransaccion nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -51,6 +51,21 @@ namespace negocio
                 throw ex;
             }
             finally { datos.cerrarConexion();}
+        }
+
+        public void AgregarVentaConSP(DetalleTransaccion nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetConsulta("EXEC SP_AGREGAR_ITEMS_VENTA '" + nuevo.IdProducto + "','" + nuevo.Cantidad + "','" + nuevo.PrecioParcial + "'");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
 
     }

@@ -11,6 +11,7 @@
             <asp:BoundField HeaderText="Apellido" DataField="cliente.Apellido" />
             <asp:BoundField HeaderText="Nombre" DataField="cliente.Nombre" />
             <asp:BoundField HeaderText="Precio Total" DataField="PrecioTotal" />
+            <asp:buttonfield ShowHeader="false" CommandName="Detalle" ButtonType="Button" Text="Ver Detalle"  />
         </Columns>
     </asp:GridView>
 </asp:Content>

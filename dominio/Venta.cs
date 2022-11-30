@@ -11,5 +11,6 @@ namespace dominio
         public int IdVenta { get; set; }
         public Cliente cliente { get; set; }
         public decimal PrecioTotal { get; set; }
+        public DateTime FechaVenta { get; set; }
     }
 }

@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormCompra.aspx.cs" Inherits="TPC_BarrientoL.FormCompra" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="mb-3">
+    <div class="mb-3">
         <label for="ddlProveedor" class="form-label">Proveedor</label>
         <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
     </div>
-
     <div id="grillaProductos">  
     <asp:GridView runat="server" ID="dgvProductos" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvProductos_RowCommand" CssClass="table table-condensed table-hover">
         <Columns>
@@ -14,24 +13,12 @@
             <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
             <asp:BoundField HeaderText="Precio" DataField="Precio" />
             <asp:BoundField HeaderText="Stock" DataField="Stock" />
-<%--            <asp:TemplateField HeaderText="Cantidad">
-                <ItemTemplate>
-                       <asp:TextBox TextMode="Number" runat="server" min="1" step="1" Width="70px" ID="txtBoxCantidad"  />
-                    </ItemTemplate>
-            </asp:TemplateField>--%>
-              <asp:buttonfield ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar"/>
+            <asp:buttonfield ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar"/>
         </Columns>
     </asp:GridView>
-    </div>    
+    </div>
+    
     <div id="listaCompra">
-<%--        <asp:GridView ID="dgvListaCompra" runat="server" AutoGenerateColumns="false" AutoPostBack="true" >
-            <Columns>
-                <asp:BoundField HeaderText="Id" DataField="ID" />
-                <asp:BoundField HeaderText="IdProducto" DataField="IdProducto" />
-                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
-                <asp:BoundField HeaderText="Precio" DataField="PrecioParcial" />
-            </Columns>
-        </asp:GridView>--%>
         <%if (CompraSession().Count > 0)
             {%>
         <div class="container text-center">

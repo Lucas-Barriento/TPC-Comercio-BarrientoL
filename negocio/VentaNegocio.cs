@@ -42,5 +42,26 @@ namespace negocio
                 Datos.cerrarConexion();
             }
         }
+
+        public void Agregar(Venta nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetConsulta("insert into VENTA (IDCLIENTE,FECHAVENTA,PRECIOFINAL)values(@IdCliente,'" + nuevo.FechaVenta + "','" + Convert.ToDouble(nuevo.PrecioTotal) + "')");
+                datos.SetParametros("@IdCliente", nuevo.cliente.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
