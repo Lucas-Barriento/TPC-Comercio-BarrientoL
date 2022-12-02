@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormVenta.aspx.cs" Inherits="TPC_BarrientoL.FormVenta" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+        <%if (TPC_BarrientoL.Functions.Validaciones.SesionIniciada(Page))
+        { %>
     <div class="mb-3">
         <label for="ddlCliente" class="form-label">Cliente</label>
         <asp:DropDownList ID="ddlCliente" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -58,5 +59,11 @@
         <asp:Button Text="Finalizar Venta" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" />
         <% } %>
     </div>
-
+           <% }
+             else{%>
+                    <p>Debes iniciar sesión para ingresar a esta pagina</p>
+                    <br />
+                    <a class="nav-link active" aria-current="page" href="Default">Iniciar sesión</a>
+                    <%--Response.Redirect("Default.aspx", false);--%>
+               <%}%>
 </asp:Content>

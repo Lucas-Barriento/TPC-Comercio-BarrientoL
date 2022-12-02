@@ -48,6 +48,7 @@
       <HintPath>packages\AspNet.ScriptManager.bootstrap.4.6.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -322,6 +323,7 @@
     <Compile Include="FormVenta.aspx.designer.cs">
       <DependentUpon>FormVenta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Functions\Validaciones.cs" />
     <Compile Include="Marca.aspx.cs">
       <DependentUpon>Marca.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

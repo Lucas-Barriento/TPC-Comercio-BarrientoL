@@ -26,7 +26,6 @@ namespace TPC_BarrientoL
             productos = productoNegocio.ListarProductos();
             if (!IsPostBack)
             {
-
                 ddlCliente.DataSource = listaClientes;
                 ddlCliente.DataValueField = "Id";
                 ddlCliente.DataTextField = "Apellido";
@@ -34,8 +33,6 @@ namespace TPC_BarrientoL
                 ddlCliente.Items.Insert(0, new ListItem(""));
             }
             listaDetalle = VentaSession();
-
-
         }
 
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)

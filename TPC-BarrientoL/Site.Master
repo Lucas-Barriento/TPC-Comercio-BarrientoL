@@ -38,26 +38,6 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
-        <%--<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/Ventas">Ventas</a></li>
-                        <li><a runat="server" href="~/Compras">Compras</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>--%>
         <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
@@ -68,9 +48,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <%if (TPC_BarrientoL.Functions.Validaciones.SesionIniciada(Page))
+              {%>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="Venta">Venta</a>
         </li>
+          <% } %>
+          <%if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
+              {%>
+
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="Cliente">Cliente</a>
         </li>
@@ -89,6 +75,8 @@
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="Categoria">Categoria</a>
         </li>
+             <% } %>
+
       </ul>
     </div>
   </div>

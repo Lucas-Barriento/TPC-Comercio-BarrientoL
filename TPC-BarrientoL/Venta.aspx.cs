@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static TPC_BarrientoL.Functions.Validaciones;
 
 namespace TPC_BarrientoL
 {
@@ -15,6 +16,7 @@ namespace TPC_BarrientoL
             VentaNegocio negocio = new VentaNegocio();
             dgvVentas.DataSource = negocio.Listar();
             dgvVentas.DataBind();
+            
         }
 
         protected void dgvVentas_RowCommand(object sender, GridViewCommandEventArgs e)

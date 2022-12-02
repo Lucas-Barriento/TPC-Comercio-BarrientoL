@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormCompra.aspx.cs" Inherits="TPC_BarrientoL.FormCompra" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+        <%if (TPC_BarrientoL.Functions.Validaciones.SesionIniciada(Page))
+        {
+            if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
+            {%>
     <div class="mb-3">
         <label for="ddlProveedor" class="form-label">Proveedor</label>
         <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -56,4 +60,17 @@
 
         <% } %>
     </div>
+             <% }
+              else{%>
+    <p>Debes tener cuenta de administrador para ingresar a esta pagina</p>
+    <br />
+    <a class="nav-link active" aria-current="page" href="Default">Ir al Inicio</a>
+         <%}
+             }
+             else{%>
+                    <p>Debes iniciar sesión para ingresar a esta pagina</p>
+                    <br />
+                    <a class="nav-link active" aria-current="page" href="Default">Iniciar sesión</a>
+                    <%--Response.Redirect("Default.aspx", false);--%>
+               <%}%>
 </asp:Content>
