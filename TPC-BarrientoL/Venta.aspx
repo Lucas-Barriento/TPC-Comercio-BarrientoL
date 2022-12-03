@@ -12,7 +12,7 @@
             <asp:BoundField HeaderText="Factura" DataField="IdVenta" />
             <asp:BoundField HeaderText="Apellido" DataField="cliente.Apellido" />
             <asp:BoundField HeaderText="Nombre" DataField="cliente.Nombre" />
-            <asp:BoundField HeaderText="Precio Total" DataField="PrecioTotal" />
+            <asp:BoundField HeaderText="Precio Total" DataField="PrecioTotal" DataFormatString="{0:0.00}"/>
             <asp:buttonfield ShowHeader="false" CommandName="Detalle" ButtonType="Button" Text="Ver Detalle"  />
         </Columns>
     </asp:GridView>

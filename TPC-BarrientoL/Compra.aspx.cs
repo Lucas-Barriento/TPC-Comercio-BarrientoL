@@ -19,6 +19,10 @@ namespace TPC_BarrientoL
 
         protected void dgvCompras_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            var indice = int.Parse(e.CommandArgument.ToString());
+            var id = int.Parse(dgvCompras.DataKeys[indice].Value.ToString());
+
+            Response.Redirect("DetalleCompra.aspx?id=" + id);
 
         }
     }

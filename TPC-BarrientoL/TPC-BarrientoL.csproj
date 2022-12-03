@@ -109,6 +109,8 @@
     <Content Include="Categoria.aspx" />
     <Content Include="Cliente.aspx" />
     <Content Include="Compra.aspx" />
+    <Content Include="DetalleCompra.aspx" />
+    <Content Include="DetalleVenta.aspx" />
     <Content Include="FormCategoria.aspx" />
     <Content Include="FormCliente.aspx" />
     <Content Include="FormCompra.aspx" />
@@ -281,6 +283,20 @@
       <DependentUpon>Compra.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DetalleCompra.aspx.cs">
+      <DependentUpon>DetalleCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleCompra.aspx.designer.cs">
+      <DependentUpon>DetalleCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleVenta.aspx.cs">
+      <DependentUpon>DetalleVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleVenta.aspx.designer.cs">
+      <DependentUpon>DetalleVenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormCategoria.aspx.cs">
       <DependentUpon>FormCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

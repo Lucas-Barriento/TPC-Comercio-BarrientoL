@@ -48,7 +48,7 @@ namespace TPC_BarrientoL
 
             foreach (var item in detalleTransaccionList)
             {
-                if (item.IdProducto == id)//si ya esta agregado
+                if (item.producto.Id == id)//si ya esta agregado
                 {
                     item.Cantidad++;
                     existente = true;
@@ -58,7 +58,8 @@ namespace TPC_BarrientoL
             {
                 DetalleTransaccion nuevo = new DetalleTransaccion();
                 Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == id);
-                nuevo.IdProducto = seleccionado.Id;
+                nuevo.producto = new Producto();
+                nuevo.producto.Id = seleccionado.Id;
                 nuevo.Cantidad = 1;
                 nuevo.PrecioParcial = seleccionado.Precio;
                 detalleTransaccionList.Add(nuevo);
@@ -70,6 +71,7 @@ namespace TPC_BarrientoL
         {
             if (ddlProveedor.SelectedItem.Value != "")
             {
+                btnBorrarLista_Click(sender, e);
                 ProductoNegocio negocio = new ProductoNegocio();
                 dgvProductos.DataSource = negocio.FiltrarProductosXProveedor(int.Parse(ddlProveedor.SelectedItem.Value.ToString()));
                 dgvProductos.DataBind();
@@ -118,13 +120,14 @@ namespace TPC_BarrientoL
                 detalleTransactionNegocio.AgregarCompraConSP(item);
 
                 //actualiza el stock de los productos
-                Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == item.IdProducto);
+                Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == item.producto.Id);
                 seleccionado.Stock += item.Cantidad;
                 productoNegocio.Modificar(seleccionado);
             }
             
             //limpia la lista de compra
             btnBorrarLista_Click(sender, e);
+            Response.Redirect("Compra.aspx", false);
         }
     }
 }

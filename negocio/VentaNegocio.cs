@@ -23,7 +23,7 @@ namespace negocio
                 {
                     Venta Venta = new Venta();
                     Venta.IdVenta = (int)Datos.LectorSql["IdVenta"];
-                    Venta.PrecioTotal = (decimal)Datos.LectorSql["PRECIOFINAL"];
+                    Venta.PrecioTotal = (decimal)Datos.LectorSql["PrecioFinal"];
 
                     Venta.cliente = new Cliente();
                     Venta.cliente.Id = (int)Datos.LectorSql["IdCliente"];

@@ -23,9 +23,7 @@
     <%}
         else
         {%>
-            <p>Sesion iniciada</p>
-            <asp:Button Text="Cerrar Sesión" runat="server" ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" />
+    <h2>Sesion iniciada</h2>
+    <asp:Button Text="Cerrar Sesión" runat="server" ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" />
     <%}%>
-    
-
 </asp:Content>

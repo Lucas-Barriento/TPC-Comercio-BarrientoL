@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Controls;
 
 namespace TPC_BarrientoL
 {
@@ -40,11 +41,12 @@ namespace TPC_BarrientoL
             var indice = int.Parse(e.CommandArgument.ToString());
             var id = int.Parse(dgvProductos.DataKeys[indice].Value.ToString());
             ProductoNegocio productoNegocio = new ProductoNegocio();
-            bool existente = false; 
+            bool existente = false;
+            
             //funcion de agregar venta, restar stock(validar) con Session
             foreach (var item in listaDetalle)
             {
-                if (item.IdProducto == id)//si ya esta agregado
+                if (item.producto.Id == id)//si ya esta agregado
                 {
                     item.Cantidad++;
                     existente = true;
@@ -54,7 +56,8 @@ namespace TPC_BarrientoL
             {
                 DetalleTransaccion nuevo = new DetalleTransaccion();
                 Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == id);
-                nuevo.IdProducto = seleccionado.Id;
+                nuevo.producto = new Producto();
+                nuevo.producto.Id = seleccionado.Id;
                 nuevo.Cantidad = 1;
                 nuevo.PrecioParcial = seleccionado.Precio;
                 listaDetalle.Add(nuevo);
@@ -74,6 +77,7 @@ namespace TPC_BarrientoL
             
             if (ddlCliente.SelectedItem.Value!="")
             {
+                btnBorrarLista_Click(sender, e);
                 dgvProductos.DataSource = productoNegocio.ListarProductos();
                 dgvProductos.DataBind();
             }
@@ -101,23 +105,27 @@ namespace TPC_BarrientoL
             nuevo.cliente = new Cliente(); 
             nuevo.cliente.Id = int.Parse(ddlCliente.SelectedItem.Value.ToString());
             listaDetalle.ForEach(x => nuevo.PrecioTotal += x.PrecioParcial * x.Cantidad);
-
+            
             VentaNegocio ventaNegocio = new VentaNegocio();
             ventaNegocio.Agregar(nuevo);
 
             DetalleTransactionNegocio detalleTransactionNegocio = new DetalleTransactionNegocio();
             foreach (var item in listaDetalle)
             {
+
                 //guardar los items de la venta
+                item.PrecioParcial = item.PrecioParcial * item.Cantidad;
                 detalleTransactionNegocio.AgregarVentaConSP(item);
                 //actualiza el stock de los productos
-                Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == item.IdProducto);
+                Producto seleccionado = productoNegocio.ListarProductos().Find(x => x.Id == item.producto.Id);
                 seleccionado.Stock-= item.Cantidad;
                 productoNegocio.Modificar(seleccionado);
 
             }
             //limpia la lista de compra
             btnBorrarLista_Click(sender, e);
+            Response.Redirect("Venta.aspx", false);
+
         }
     }
 }

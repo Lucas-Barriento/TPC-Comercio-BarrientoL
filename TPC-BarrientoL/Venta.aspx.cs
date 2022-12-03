@@ -21,7 +21,10 @@ namespace TPC_BarrientoL
 
         protected void dgvVentas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
+            var indice = int.Parse(e.CommandArgument.ToString());
+            var id = int.Parse(dgvVentas.DataKeys[indice].Value.ToString());
+
+            Response.Redirect("DetalleVenta.aspx?id=" + id);
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
