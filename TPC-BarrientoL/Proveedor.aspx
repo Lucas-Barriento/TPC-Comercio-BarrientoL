@@ -6,21 +6,35 @@
             if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
             {%>
     <h2><%: Title %></h2>
-    <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProveedor.aspx" />
-    <br />
-    <br />
-    <asp:GridView runat="server" ID="dgvProveedores" DataKeyNames="ID" OnRowCommand="dgvProveedores_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
-        <Columns>
-            <asp:BoundField HeaderText="Proveedor" DataField="Nombre" />
-            <asp:BoundField HeaderText="Domicilio" DataField="Domicilio" />
-            <asp:BoundField HeaderText="Localidad" DataField="Localidad" />
-            <asp:BoundField HeaderText="Email" DataField="Email" />
-            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-            <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-            <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
-            <%--<asp:ButtonField ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
-        </Columns>
-    </asp:GridView>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="row">
+                <div class="col-3">
+                    <div class="mb-3">
+                        <asp:Label Text="Buscar" runat="server" CssClass="form-label" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProducto.aspx" />
+            </div>
+            <br />
+            <asp:GridView runat="server" ID="dgvProveedores" DataKeyNames="ID" OnRowCommand="dgvProveedores_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
+                <Columns>
+                    <asp:BoundField HeaderText="Proveedor" DataField="Nombre" />
+                    <asp:BoundField HeaderText="Domicilio" DataField="Domicilio" />
+                    <asp:BoundField HeaderText="Localidad" DataField="Localidad" />
+                    <asp:BoundField HeaderText="Email" DataField="Email" />
+                    <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                    <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
+                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
+                    <%--<asp:ButtonField ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
+                </Columns>
+            </asp:GridView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <% }
         else
         {%>

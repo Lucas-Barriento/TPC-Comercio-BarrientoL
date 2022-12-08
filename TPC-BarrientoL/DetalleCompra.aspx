@@ -15,8 +15,8 @@
             <asp:BoundField HeaderText="Precio Parcial" DataField="PrecioParcial" DataFormatString="{0:0.00}" />
         </Columns>
     </asp:GridView>
-        <asp:Button Text="Volver" runat="server" PostBackUrl="~/Compra.aspx" />
-
+                <asp:Button Text="Volver" runat="server" PostBackUrl="~/Compra.aspx" CssClass="btn btn-secondary"/>
+                <asp:Button Text="Descargar" runat="server" ID="btnDescargar" OnClick="btnDescargar_Click" CssClass="btn btn-secondary"/>
         <% }
         else
         {%>

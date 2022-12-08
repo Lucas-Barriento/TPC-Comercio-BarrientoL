@@ -3,25 +3,29 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%if (TPC_BarrientoL.Functions.Validaciones.SesionIniciada(Page))
         { %>
+        <asp:UpdatePanel runat="server">
+        <ContentTemplate>
     <div class="mb-3">
         <label for="ddlCliente" class="form-label">Cliente</label>
         <asp:DropDownList ID="ddlCliente" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
     </div>
     <div id="grillaProductos">
-        <asp:GridView runat="server" ID="dgvProductos" AutoGenerateColumns="false" DataKeyNames="ID" CssClass="table table-condensed table-hover" OnRowCommand="dgvProductos_RowCommand">
+            <asp:GridView runat="server" ID="dgvProductos" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" CssClass="table table-condensed table-hover" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
                 <asp:BoundField HeaderText="Stock" DataField="Stock" />
-<%--                <asp:TemplateField HeaderText="Cantidad">
+                <%--<asp:TemplateField HeaderText="Cantidad">
                         <ItemTemplate>
                             <asp:TextBox AutoPostBack="true" ID="txtboxCantidad" ClientIDMode="Static" TextMode="Number" runat="server" min="1" max='<%#Eval("Stock") %>' step="1" Width="70px" />
                         </ItemTemplate>
                     </asp:TemplateField>--%>
-                <asp:ButtonField ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar" />
+                <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Agregar" ShowSelectButton="true" />
             </Columns>
+            <PagerSettings Mode="Numeric" Position="Top" PageButtonCount="10" />
+            <PagerStyle BackColor="White" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
         </asp:GridView>
     </div>
     <div id="listaVenta">
@@ -56,11 +60,13 @@
             </div>
         </div>
         <% } %>
-        <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" />
-        <asp:Button Text="Finalizar Venta" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" />
+        <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" CssClass="btn btn-secondary" />
+        <asp:Button Text="Finalizar Venta" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" CssClass="btn btn-secondary"/>
         <% } %>
     </div>
-    <% }
+        </ContentTemplate>
+        </asp:UpdatePanel>
+            <% }
         else
         {%>
     <p>Debes iniciar sesión para ingresar a esta pagina</p>

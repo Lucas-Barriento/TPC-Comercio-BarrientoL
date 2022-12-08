@@ -34,5 +34,14 @@ namespace TPC_BarrientoL
                 Response.Redirect("FormCliente.aspx?id=" + id);
             }
         }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            ClienteNegocio clienteNegocio = new ClienteNegocio();   
+            dgvClientes.DataSource = clienteNegocio.Listar().FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper())
+                                                                        ||x.Apellido.ToUpper().Contains(txtBuscar.Text.ToUpper())
+                                                                        || x.Id.ToString().ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvClientes.DataBind();
+        }
     }
 }

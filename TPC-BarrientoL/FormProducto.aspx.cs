@@ -18,14 +18,15 @@ namespace TPC_BarrientoL
             {
                 //precarga de marcas y categorias
                 MarcaNegocio marcaNegocio = new MarcaNegocio();
-                List<Marca> listaMarcas = marcaNegocio.Listar();
+                List<Marca> listaMarcas = marcaNegocio.Listar().FindAll(x=>x.Estado==true);
                 ddlMarca.DataSource = listaMarcas;
                 ddlMarca.DataValueField = "Id";
                 ddlMarca.DataTextField = "Nombre";
                 ddlMarca.DataBind();
 
+
                 CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-                List<Categoria> listaCategorias = categoriaNegocio.Listar();
+                List<Categoria> listaCategorias = categoriaNegocio.Listar().FindAll(x => x.Estado == true);
                 ddlCategoria.DataSource = listaCategorias;
                 ddlCategoria.DataValueField = "Id";
                 ddlCategoria.DataTextField = "Nombre";
@@ -33,7 +34,7 @@ namespace TPC_BarrientoL
 
                 //precarga de proveedores
                 ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
-                listaProveedores = proveedorNegocio.Listar();
+                listaProveedores = proveedorNegocio.Listar().FindAll(x => x.Estado == true);
                 listacheck.DataSource = listaProveedores;
                 listacheck.DataValueField = "Id";
                 listacheck.DataTextField = "Nombre";
@@ -57,7 +58,7 @@ namespace TPC_BarrientoL
 
                     Proveedor_productoNegocio proveedor_ProductoNegocio = new Proveedor_productoNegocio();
                     List<Proveedor_Producto> listaProveedor_Producto = proveedor_ProductoNegocio.Listar();
-                    foreach (var aux in listaProveedor_Producto)
+                    foreach (var aux in  listaProveedor_Producto)
                     {
                         if (aux.IdProducto == seleccionado.Id)//si el prod seleccionado esta en la lista de provProd lo tilda
                         {
@@ -78,18 +79,16 @@ namespace TPC_BarrientoL
                         rbInactivo.Checked = true;
                     }
                 }
-
             }
             else
             {
                 //si se agrega un nuevo producto se precargan los valores vacios
-                ddlMarca.Items.Insert(0, new ListItem(""));//agrega el nuevo item vacio
-                ddlCategoria.Items.Insert(0, new ListItem(""));
+                //ddlMarca.Items.Insert(0, new ListItem("Please select", "0"));//agrega el nuevo item vacio
+                //ddlCategoria.Items.Insert(0, new ListItem("","0"));
                 rbInactivo.Checked = false;
             }
             lblId.Visible = false;
             txtBoxId.Visible = false;
-
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

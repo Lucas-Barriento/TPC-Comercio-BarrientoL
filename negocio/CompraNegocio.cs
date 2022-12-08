@@ -16,7 +16,7 @@ namespace negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetConsulta("select C.ID,P.NOMBRE Proveedor,P.ID idProv, C.FECHACOMPRA, C.PRECIOTOTAL from COMPRA C,PROVEEDOR P where C.IDPROVEEDOR=P.ID");
+                Datos.SetConsulta("select C.ID,P.NOMBRE Proveedor,P.ID idProv,P.LOCALIDAD,P.TELEFONO,P.DOMICILIO,P.EMAIL, C.FECHACOMPRA, C.PRECIOTOTAL from COMPRA C,PROVEEDOR P where C.IDPROVEEDOR=P.ID");
                 Datos.ejecutarLectura();
 
                 while (Datos.LectorSql.Read())
@@ -29,6 +29,10 @@ namespace negocio
                     Compra.Proveedor = new Proveedor();
                     Compra.Proveedor.Id = (int)Datos.LectorSql["IdProv"];
                     Compra.Proveedor.Nombre = (string)Datos.LectorSql["Proveedor"];
+                    Compra.Proveedor.Localidad = (string)Datos.LectorSql["Localidad"];
+                    Compra.Proveedor.Telefono = (string)Datos.LectorSql["Telefono"];
+                    Compra.Proveedor.Domicilio = (string)Datos.LectorSql["Domicilio"];
+                    Compra.Proveedor.Email = (string)Datos.LectorSql["Email"];
 
                     Lista.Add(Compra);
                 }

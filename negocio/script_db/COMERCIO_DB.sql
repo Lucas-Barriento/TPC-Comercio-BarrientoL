@@ -114,7 +114,19 @@ END
 	insert into CATEGORIA values ('Smartphones','1'),('Relojes','1'),('Bicicletas','1'),('Indumentaria','1'),('Farmacia','1')
 	insert into VENTA values (37763043,GETDATE(),1000)
 	insert into PROVEEDOR values ('Multipoint','Calle falsa 123','Benavidez','email@multipoint.com','0111556589593', '1')
-	insert into PRODUCTO values('Samsung a12',1,1,1,1,15000,10,1),('Bicicleta R29 21V',1,1,1,1,70000,5,1)
+	insert into PRODUCTO values ('Samsung a12',1,1,1,1,15000,10,1),
+				 ('Bicicleta R29 21V',1,1,1,1,70000,5,1),
+				 ('Playstation 5',1,1,1,1,120000,10,1),
+				 ('Moto Edge 30',1,1,1,1,120000,10,1),
+				 ('Xiaomi Smart Band 7',1,1,1,1,20000,15,1),
+				 ('Smart TV 4K UHD Samsung 50" UN50AU7000',1,1,1,1,118999,20,1),
+				 ('Parlante Bluetooth Noblex MNT720P',1,1,1,1,89999,7,1),
+				 ('Notebook Acer Nitro 5',1,1,1,1,240000,15,1),
+				 ('Notebook Exo Smart 14,1"',1,1,1,1,89999,9,1),
+				 ('Desodorante antitranspirante Nivea Men',1,1,1,1,524.20,3,1),
+				 ('Jabon liquido Lux Orquidea X 250ml',1,1,1,1,532,4,1),
+				 ('Protector Solar Nivea Sun Protect Kids',1,1,1,1,1400.25,25,1),
+				 ('Gorra State O`Neill S23',1,1,1,1,6500,5,1)
 	insert into CLIENTE values ('37763043','Lucas','Barriento',1)
 	insert into PROVEEDORES_PRODUCTOS values (2,1)
 	insert into COMPRA values (1,GETDATE(),100000)
@@ -124,7 +136,8 @@ END
 ------------------------------
 	SELECT CAST('TRUE'AS BIT)--1
 
-	select*from USUARIO
+	select*from detalleventa
+
 
 
 

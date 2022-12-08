@@ -14,6 +14,7 @@ namespace TPC_BarrientoL
             CategoriaNegocio negocio = new CategoriaNegocio();
             dgvCategorias.DataSource = negocio.Listar();
             dgvCategorias.DataBind();
+            txtBuscar.Attributes.Add("onKeyUp", "CallScript(this)");
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -35,5 +36,14 @@ namespace TPC_BarrientoL
                 Response.Redirect("FormCategoria.aspx?id=" + id);
             }
         }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            dgvCategorias.DataSource = negocio.Listar().FindAll(x=>x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvCategorias.DataBind();
+        }
+
     }
 }

@@ -14,7 +14,7 @@ namespace dominio
         public bool Estado { get; set; }
         public override string ToString()
         {
-            return Nombre;
+            return Apellido + "," + Nombre;
         }
     }
 }

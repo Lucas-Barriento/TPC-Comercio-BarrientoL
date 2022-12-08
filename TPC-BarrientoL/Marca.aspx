@@ -6,17 +6,25 @@
             if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
             {%>
     <h2><%: Title %></h2>
-    <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormMarca.aspx" />
-    <br />
-    <br />
-    <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
-        <Columns>
-            <asp:BoundField HeaderText="Marca" DataField="Nombre" />
-            <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-            <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
-            <%--<asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
-        </Columns>
-    </asp:GridView>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <asp:Label Text="Buscar" runat="server" CssClass="form-label" />
+            <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" />
+            <br />
+            <div>
+                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormMarca.aspx" />
+            </div>
+            <br />
+            <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
+                <Columns>
+                    <asp:BoundField HeaderText="Marca" DataField="Nombre" />
+                    <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
+                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
+                    <%--<asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
+                </Columns>
+            </asp:GridView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <% }
         else
         {%>

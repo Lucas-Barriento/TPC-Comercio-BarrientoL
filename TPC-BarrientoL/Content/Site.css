@@ -68,3 +68,42 @@ tr:nth-child(odd) {
 .col {
     border: 1px solid !important;
 }
+.table td,th{
+    text-align:center !important;
+}
+
+
+.row{
+    display:flex;
+    align-items:center !important;
+}
+
+.col-2 {
+    display: flex !important;
+    align-self: self-end !important;
+}
+
+#rowTotal {
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: gray;
+    margin-right: 0px;
+    margin-left: 0px;
+    height: 48px;
+    font-size: larger;
+}
+
+#rowTotal.col-3 {
+        display: flex;
+        justify-content: center;
+        align-content: space-between;
+}
+#mbTotal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0 !important;
+}
+#grillaProductos div{
+    width:100%
+}

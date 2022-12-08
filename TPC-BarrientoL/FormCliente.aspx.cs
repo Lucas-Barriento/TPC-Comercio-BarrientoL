@@ -51,7 +51,7 @@ namespace TPC_BarrientoL
         {
             Cliente cliente = new Cliente();
             ClienteNegocio clienteNegocio = new ClienteNegocio();
-            cliente.Id = int.Parse(txtBoxId.Text.ToString());
+            cliente.Id = int.Parse(txtBoxId.Text);
             cliente.Nombre = txtBoxNombre.Text;
             cliente.Apellido = txtBoxApellido.Text;
             if (rbActivo.Checked)

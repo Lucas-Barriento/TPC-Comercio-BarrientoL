@@ -38,5 +38,13 @@ namespace TPC_BarrientoL
                 Response.Redirect("FormMarca.aspx?id=" + id);
             }           
         }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            dgvMarcas.DataSource = negocio.Listar().FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvMarcas.DataBind();
+
+        }
     }
 }

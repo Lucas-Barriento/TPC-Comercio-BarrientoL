@@ -5,12 +5,14 @@
         {
             if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
             {%>
-    <div class="mb-3">
-        <label for="ddlProveedor" class="form-label">Proveedor</label>
-        <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-    </div>
+        <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="mb-3">
+                <label for="ddlProveedor" class="form-label">Proveedor</label>
+                <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
     <div id="grillaProductos">
-        <asp:GridView runat="server" ID="dgvProductos" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvProductos_RowCommand" CssClass="table table-condensed table-hover">
+            <asp:GridView runat="server" ID="dgvProductos" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" CssClass="table table-condensed table-hover" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -18,11 +20,12 @@
                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
                 <asp:BoundField HeaderText="Stock" DataField="Stock" />
-                <asp:ButtonField ShowHeader="false" CommandName="Agregar" ButtonType="Button" Text="Agregar" />
+                <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Agregar" ShowSelectButton="true" />
             </Columns>
-        </asp:GridView>
+                <PagerSettings Mode="Numeric" Position="Top" PageButtonCount="10" />
+                <PagerStyle BackColor="White" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
+            </asp:GridView>
     </div>
-
     <div id="listaCompra">
         <%if (CompraSession().Count > 0)
             {%>
@@ -56,11 +59,13 @@
         </div>
 
         <% } %>
-        <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" />
-        <asp:Button Text="Finalizar Compra" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" />
-
+        <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" CssClass="btn btn-secondary"/>
+        <asp:Button Text="Finalizar Compra" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" CssClass="btn btn-secondary"/>
         <% } %>
     </div>
+        </ContentTemplate>
+        </asp:UpdatePanel>
+
     <% }
         else
         {%>

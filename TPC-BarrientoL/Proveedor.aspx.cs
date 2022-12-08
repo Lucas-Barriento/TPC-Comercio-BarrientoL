@@ -37,5 +37,12 @@ namespace TPC_BarrientoL
                 Response.Redirect("FormProveedor.aspx?id=" + id);
             }
         }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+            dgvProveedores.DataSource = proveedorNegocio.Listar().FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvProveedores.DataBind();
+        }
     }
 }

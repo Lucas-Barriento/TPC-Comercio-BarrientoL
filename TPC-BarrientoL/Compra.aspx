@@ -16,7 +16,7 @@
                 <asp:BoundField HeaderText="Total" DataField="PrecioTotal" DataFormatString="{0:0.00}"/>
                 <asp:buttonfield ShowHeader="false" CommandName="Detalle" ButtonType="Button" Text="Ver Detalle" />
             </Columns>
-        </asp:GridView>
+        </asp:GridView> 
              <% }
               else{%>
     <p>Debes tener cuenta de administrador para ingresar a esta pagina</p>
