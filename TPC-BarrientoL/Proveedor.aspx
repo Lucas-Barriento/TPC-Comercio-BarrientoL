@@ -18,10 +18,10 @@
             </div>
             <br />
             <div>
-                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProducto.aspx" />
+                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProducto.aspx" CssClass="btn btn-secondary" />
             </div>
             <br />
-            <asp:GridView runat="server" ID="dgvProveedores" DataKeyNames="ID" OnRowCommand="dgvProveedores_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
+            <asp:GridView runat="server" ID="dgvProveedores" DataKeyNames="ID" OnRowCommand="dgvProveedores_RowCommand" AutoGenerateColumns="false" CssClass="table table-dark table-striped">
                 <Columns>
                     <asp:BoundField HeaderText="Proveedor" DataField="Nombre" />
                     <asp:BoundField HeaderText="Domicilio" DataField="Domicilio" />
@@ -29,7 +29,7 @@
                     <asp:BoundField HeaderText="Email" DataField="Email" />
                     <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                     <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
+                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar"  ControlStyle-CssClass="btn btn-secondary"/>
                     <%--<asp:ButtonField ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
                 </Columns>
             </asp:GridView>

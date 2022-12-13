@@ -12,15 +12,14 @@
             <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar" AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" />
             <br />
             <div>
-                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormMarca.aspx" />
+                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormMarca.aspx"  CssClass="btn btn-secondary"/>
             </div>
             <br />
-            <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false" CssClass="table table-condensed table-hover">
+            <asp:GridView runat="server" ID="dgvMarcas" DataKeyNames="Id" OnRowCommand="dgvMarcas_RowCommand" AutoGenerateColumns="false" CssClass="table table-dark table-striped">
                 <Columns>
                     <asp:BoundField HeaderText="Marca" DataField="Nombre" />
                     <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" />
-                    <%--<asp:buttonfield ShowHeader="false" CommandName="Eliminar" ButtonType="Button" Text="Eliminar" />--%>
+                    <asp:ButtonField ShowHeader="false" CommandName="Modificar" ButtonType="Button" Text="Modificar" ControlStyle-CssClass="btn btn-secondary" />
                 </Columns>
             </asp:GridView>
         </ContentTemplate>

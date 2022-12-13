@@ -21,25 +21,6 @@
                 $("#txtBoxNombre").removeClass("is-invalid");
                 $("#txtBoxNombre").addClass("is-valid");
             }
-
-            //if (marca === "") {
-            //    $("#ddlMarca").removeClass("is-valid");
-            //    $("#ddlMarca").addClass("is-invalid");
-            //    valido = false;
-            //}
-            //else {
-            //    $("#ddlMarca").removeClass("is-invalid");
-            //    $("#ddlMarca").addClass("is-valid");
-            //}
-            //if (categoria === "") {
-            //    $("#ddlCategoria").removeClass("is-valid");
-            //    $("#ddlCategoria").addClass("is-invalid");
-            //    valido = false;
-            //}
-            //else {
-            //    $("#ddlCategoria").removeClass("is-invalid");
-            //    $("#ddlCategoria").addClass("is-valid");
-            //}
             if (stock === "") {
                 $("#txtBoxStock").removeClass("is-valid");
                 $("#txtBoxStock").addClass("is-invalid");
@@ -85,6 +66,14 @@
         {
             if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
             {%>
+    <%if (Request.QueryString["Id"] != null)
+        {%>
+    <h2>Modificar producto</h2>
+    <%}
+        else
+        {%>
+    <h2>Agregar producto</h2>
+      <%}%>
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
@@ -130,8 +119,8 @@
             </formview>
             <%--<asp:CheckBox Text="Activo" runat="server" Checked="true" />--%>
             <div class="mb-3">
-                <asp:Button Text="Guardar" ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" OnClientClick="return validar()" />
-                <asp:Button Text="Cancelar" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" />
+                <asp:Button Text="Guardar" ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" OnClientClick="return validar()" CssClass="btn btn-secondary" />
+                <asp:Button Text="Cancelar" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CssClass="btn btn-secondary"/>
             </div>
         </div>
     </div>
@@ -140,7 +129,7 @@
         {%>
     <p>Debes tener cuenta de administrador para ingresar a esta pagina</p>
     <br />
-    <a class="nav-link active" aria-current="page" href="Default">Ir al Inicio</a>
+    <a class="nav-link active" aria-current="page" href="Default" >Ir al Inicio</a>
     <%}
         }
         else

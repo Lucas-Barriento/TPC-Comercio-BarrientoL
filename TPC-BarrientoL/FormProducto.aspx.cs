@@ -39,6 +39,8 @@ namespace TPC_BarrientoL
                 listacheck.DataValueField = "Id";
                 listacheck.DataTextField = "Nombre";
                 listacheck.DataBind();
+
+                
             }
 
             if (Request.QueryString["Id"] != null)//precarga los datos del seleccionado

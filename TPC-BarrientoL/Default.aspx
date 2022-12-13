@@ -15,7 +15,7 @@
                 <asp:TextBox TextMode="Password" ID="txtPass" runat="server" CssClass="form-control" />
             </div>
             <div class="mb-3">
-                <asp:Button Text="Ingresar" ID="btnIngresar" runat="server" OnClick="btnIngresar_Click" />
+                <asp:Button Text="Ingresar" ID="btnIngresar" runat="server" OnClick="btnIngresar_Click" CssClass="btn btn-secondary" />
                 <%--<asp:Button Text="Cancelar" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click"/>--%>
             </div>
         </div>
@@ -24,6 +24,6 @@
         else
         {%>
     <h2>Sesion iniciada</h2>
-    <asp:Button Text="Cerrar Sesión" runat="server" ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" />
+    <asp:Button Text="Cerrar Sesión" runat="server" ID="btnCerrarSesion" OnClick="btnCerrarSesion_Click" CssClass="btn btn-secondary" />
     <%}%>
 </asp:Content>

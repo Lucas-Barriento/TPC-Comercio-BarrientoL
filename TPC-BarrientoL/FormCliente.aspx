@@ -42,6 +42,15 @@
         {
             if (TPC_BarrientoL.Functions.Validaciones.EsAdmin(Page))
             {%>
+        <%if (Request.QueryString["Id"] != null)
+        {%>
+    <h2>Modificar cliente</h2>
+    <%}
+        else
+        {%>
+    <h2>Agregar cliente</h2>
+      <%}%>
+
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
@@ -62,8 +71,8 @@
                 <%--<asp:CheckBox Text="Activo" runat="server" Checked="true" />--%>
             </div>
             <div class="mb-3">
-                <asp:Button Text="Guardar" ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" OnClientClick="return validar()" />
-                <asp:Button Text="Cancelar" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" />
+                <asp:Button Text="Guardar" ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" OnClientClick="return validar()" CssClass="btn btn-secondary" />
+                <asp:Button Text="Cancelar" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CssClass="btn btn-secondary"/>
             </div>
         </div>
     </div>

@@ -13,17 +13,15 @@ namespace TPC_BarrientoL
         public List<Proveedor> listaProveedores = new List<Proveedor>();
         public List<Proveedor_Producto> proveedor_Productos = new List<Proveedor_Producto>();
         ProductoNegocio productoNegocio = new ProductoNegocio();
+        ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             ProductoNegocio productoNegocio = new ProductoNegocio();
             productos = productoNegocio.ListarProductos().FindAll(x => x.Estado == true);
-            Proveedor_productoNegocio proveedor_ProductoNegocio = new Proveedor_productoNegocio();
-            proveedor_Productos = proveedor_ProductoNegocio.Listar();
             detalleTransaccionList = CompraSession();
 
             if (!IsPostBack)
             {
-                ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
                 listaProveedores = proveedorNegocio.Listar().FindAll(x => x.Estado == true);
                 ddlProveedor.DataSource = listaProveedores;
                 ddlProveedor.DataValueField = "Id";
@@ -34,7 +32,7 @@ namespace TPC_BarrientoL
             if (ddlProveedor.SelectedItem.Value != "")
             {
                 ProductoNegocio negocio = new ProductoNegocio();
-                dgvProductos.DataSource = negocio.ListarProductos();
+                dgvProductos.DataSource = negocio.FiltrarProductosXProveedor(int.Parse(ddlProveedor.SelectedItem.Value.ToString()));
                 dgvProductos.DataBind();
             }
         }

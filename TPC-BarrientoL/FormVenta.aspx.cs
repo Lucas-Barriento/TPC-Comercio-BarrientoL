@@ -1,8 +1,11 @@
 ﻿using dominio;
 using negocio;
+using Org.BouncyCastle.Crypto.Tls;
 using System;
 using System.Collections.Generic;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace TPC_BarrientoL
 {
@@ -17,6 +20,7 @@ namespace TPC_BarrientoL
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             List<Cliente> listaClientes = clienteNegocio.Listar().FindAll(x => x.Estado == true);
             productos = productoNegocio.ListarProductos().FindAll(x => x.Estado == true);
+            listaDetalle = VentaSession();
             if (!IsPostBack)
             {
                 listaClientes.ForEach(x => x.Nombre = x.Apellido + " " + x.Nombre);
@@ -26,7 +30,6 @@ namespace TPC_BarrientoL
                 ddlCliente.DataBind();
                 ddlCliente.Items.Insert(0, new ListItem(""));
             }
-                listaDetalle = VentaSession();
             if (ddlCliente.SelectedItem.Value != "")
             {
                 ProductoNegocio negocio = new ProductoNegocio();
@@ -51,7 +54,6 @@ namespace TPC_BarrientoL
             }
             else
             {
-                //vacia la grilla
                 dgvProductos.DataSource = null;
                 dgvProductos.DataBind();
             }
@@ -102,12 +104,20 @@ namespace TPC_BarrientoL
             int id = int.Parse(dgvProductos.SelectedDataKey.Value.ToString());
             bool existente = false;
 
-            //funcion de agregar venta, restar stock(validar) con Session
             foreach (var item in listaDetalle)
             {
                 if (item.producto.Id == id)//si ya esta agregado
                 {
-                    item.Cantidad++;
+                    if (item.Cantidad < productoNegocio.ListarProductos().Find(x=>x.Id==item.producto.Id).Stock)
+                    {
+                        item.Cantidad++;
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Stock insuficiente");
+                        return;
+                    }
                     existente = true;
                 }
             }

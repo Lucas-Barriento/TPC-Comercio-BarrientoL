@@ -63,11 +63,11 @@
             <% } %>
             <br />
             <div>
-                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProducto.aspx" />
+                <asp:Button Text="Agregar" runat="server" PostBackUrl="~/FormProducto.aspx" CssClass="btn btn-secondary" />
             </div>
             <br />
 
-            <asp:GridView runat="server" ID="dgvProductos" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" CssClass="table table-condensed table-hover" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
+            <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-dark table-striped" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
                 <Columns>
                     <asp:BoundField HeaderText="Nombre" DataField="Nombre" ItemStyle-Width="390px"/>
                     <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
@@ -76,10 +76,10 @@
                     <asp:BoundField HeaderText="Stock Minimo" DataField="StockMinimo" />
                     <asp:BoundField HeaderText="% Ganancia" DataField="PorcentajeGanancia" />
                     <asp:CheckBoxField HeaderText="Activo" DataField="Estado" ControlStyle-CssClass="form-check" />
-                    <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Modificar" ShowSelectButton="true" />
+                    <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Modificar" ShowSelectButton="true" ControlStyle-CssClass="btn btn-secondary" />
                 </Columns>
                 <PagerSettings Mode="Numeric" Position="Bottom" PageButtonCount="10" />
-                <PagerStyle BackColor="White" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
+                <PagerStyle BackColor="#454d55" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>

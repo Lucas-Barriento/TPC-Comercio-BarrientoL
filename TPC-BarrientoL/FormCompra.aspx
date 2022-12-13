@@ -12,7 +12,7 @@
                 <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </div>
     <div id="grillaProductos">
-            <asp:GridView runat="server" ID="dgvProductos" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" CssClass="table table-condensed table-hover" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
+            <asp:GridView runat="server" ID="dgvProductos" ClientIDMode="Static" AutoGenerateColumns="false" DataKeyNames="ID" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" CssClass="table table-condensed table-hover" AllowPaging="true" PageSize="4" OnPageIndexChanging="dgvProductos_PageIndexChanging">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" Visible="false" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -20,10 +20,10 @@
                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
                 <asp:BoundField HeaderText="Stock" DataField="Stock" />
-                <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Agregar" ShowSelectButton="true" />
+                <asp:CommandField ShowHeader="false" ButtonType="Button" SelectText="Agregar" ShowSelectButton="true" ControlStyle-CssClass="btn btn-secondary" />
             </Columns>
-                <PagerSettings Mode="Numeric" Position="Top" PageButtonCount="10" />
-                <PagerStyle BackColor="White" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
+            <PagerSettings Mode="Numeric" Position="Top" PageButtonCount="10" />
+            <PagerStyle BackColor="White" Height="30px" VerticalAlign="Bottom" HorizontalAlign="Center" />
             </asp:GridView>
     </div>
     <div id="listaCompra">
@@ -59,6 +59,7 @@
         </div>
 
         <% } %>
+        <br />
         <asp:Button Text="Borrar lista" ID="btnBorrarLista" runat="server" OnClick="btnBorrarLista_Click" CssClass="btn btn-secondary"/>
         <asp:Button Text="Finalizar Compra" ID="btnFinalizar" runat="server" OnClick="btnFinalizar_Click" CssClass="btn btn-secondary"/>
         <% } %>

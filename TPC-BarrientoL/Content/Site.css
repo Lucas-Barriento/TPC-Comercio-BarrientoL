@@ -107,3 +107,7 @@ tr:nth-child(odd) {
 #grillaProductos div{
     width:100%
 }
+
+div#listaVenta, div#listaCompra {
+    overflow: auto;
+}
