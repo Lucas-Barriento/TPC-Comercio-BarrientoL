@@ -19,7 +19,7 @@ namespace TPC_BarrientoL
         {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             List<Cliente> listaClientes = clienteNegocio.Listar().FindAll(x => x.Estado == true);
-            productos = productoNegocio.ListarProductos().FindAll(x => x.Estado == true);
+            productos = productoNegocio.ListarProductos().FindAll(x => x.Estado == true && x.Stock>0);
             listaDetalle = VentaSession();
             if (!IsPostBack)
             {
@@ -33,7 +33,7 @@ namespace TPC_BarrientoL
             if (ddlCliente.SelectedItem.Value != "")
             {
                 ProductoNegocio negocio = new ProductoNegocio();
-                dgvProductos.DataSource = negocio.ListarProductos();
+                dgvProductos.DataSource = negocio.ListarProductos().FindAll(x => x.Estado == true && x.Stock > 0);
                 dgvProductos.DataBind();
             }
         }
@@ -49,7 +49,7 @@ namespace TPC_BarrientoL
             if (ddlCliente.SelectedItem.Value != "")
             {
                 btnBorrarLista_Click(sender, e);
-                dgvProductos.DataSource = productoNegocio.ListarProductos().FindAll(x => x.Estado == true);
+                dgvProductos.DataSource = productoNegocio.ListarProductos().FindAll(x => x.Estado == true && x.Stock > 0);
                 dgvProductos.DataBind();
             }
             else
